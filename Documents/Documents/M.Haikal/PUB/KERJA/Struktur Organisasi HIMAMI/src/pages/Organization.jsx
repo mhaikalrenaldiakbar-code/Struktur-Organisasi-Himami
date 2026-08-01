@@ -12,6 +12,10 @@ import {
   HandHeart,
   X,
   CheckCircle2,
+  Sparkles,
+  ChevronRight,
+  Eye,
+  Award,
 } from "lucide-react";
 
 import ketua from "../assets/ketua.png";
@@ -26,7 +30,7 @@ import kesejahteraan from "../assets/kesejahteraan.png";
 
 function Divisi() {
   const [selected, setSelected] = useState(null);
-  const [filter, setFilter] = useState("all"); // 'all', 'bph', 'divisi'
+  const [filter, setFilter] = useState("all");
 
   const roles = [
     {
@@ -40,7 +44,8 @@ function Divisi() {
         "Menjadi perwakilan resmi HIMAMI di dalam maupun luar kampus.",
         "Merumuskan arah kebijakan strategis organisasi HIMAMI.",
       ],
-      color: "bg-[#0B25B7] text-white",
+      color: "from-blue-600 to-indigo-800",
+      accent: "bg-amber-400 text-slate-950",
     },
     {
       title: "Wakil Ketua",
@@ -53,7 +58,8 @@ function Divisi() {
         "Mengawasi kinerja seluruh divisi dan urusan internal pengurus.",
         "Menggantikan peran Ketua saat berhalangan hadir.",
       ],
-      color: "bg-[#0B25B7] text-white",
+      color: "from-blue-600 to-indigo-800",
+      accent: "bg-blue-100 text-blue-900",
     },
     {
       title: "Sekretaris",
@@ -66,7 +72,8 @@ function Divisi() {
         "Menyusun proposal dan laporan pertanggungjawaban (LPJ) kegiatan.",
         "Menjaga keteraturan sistem administrasi himpunan.",
       ],
-      color: "bg-[#0B25B7] text-white",
+      color: "from-blue-600 to-indigo-800",
+      accent: "bg-emerald-100 text-emerald-900",
     },
     {
       title: "Bendahara",
@@ -79,7 +86,8 @@ function Divisi() {
         "Menyusun rencana anggaran biaya (RAB) setiap program kerja.",
         "Menyajikan laporan keuangan yang transparan dan akuntabel.",
       ],
-      color: "bg-[#0B25B7] text-white",
+      color: "from-blue-600 to-indigo-800",
+      accent: "bg-purple-100 text-purple-900",
     },
     {
       title: "Keilmuan",
@@ -92,20 +100,22 @@ function Divisi() {
         "Fasilitasi mentoring ujian & lomba teknologi antar mahasiswa.",
         "Pengembangan potensi intelektual di bidang Informatika.",
       ],
-      color: "bg-white text-black",
+      color: "from-sky-500 to-blue-700",
+      accent: "bg-sky-100 text-sky-900",
     },
     {
       title: "Kominfo",
       category: "divisi",
       icon: <Radio size={28} />,
       image: kominfo,
-      tagline: "Publikasi, Media & Desain",
+      tagline: "Publikasi, Media & Desain Visual",
       jobdesk: [
         "Mengelola seluruh media sosial, website, dan saluran informasi HIMAMI.",
         "Merancang aset visual, banner, feed Instagram, dan konten edukatif.",
         "Dokumentasi fotografi & videografi setiap event HIMAMI.",
       ],
-      color: "bg-white text-black",
+      color: "from-cyan-500 to-teal-700",
+      accent: "bg-cyan-100 text-cyan-900",
     },
     {
       title: "Humas",
@@ -118,7 +128,8 @@ function Divisi() {
         "Menggalang kerja sama sponsor, media partner, dan jejaring alumni.",
         "Menjadi jembatan penyalur informasi ke seluruh mahasiswa.",
       ],
-      color: "bg-white text-black",
+      color: "from-amber-500 to-orange-700",
+      accent: "bg-amber-100 text-amber-900",
     },
     {
       title: "Kerohanian",
@@ -131,7 +142,8 @@ function Divisi() {
         "Menjaga iklim religius, toleransi, dan etika karakter mahasiswa.",
         "Memperingati hari-hari besar keagamaan secara rutin.",
       ],
-      color: "bg-white text-black",
+      color: "from-emerald-500 to-green-700",
+      accent: "bg-emerald-100 text-emerald-900",
     },
     {
       title: "Kesejahteraan",
@@ -144,7 +156,8 @@ function Divisi() {
         "Mengorganisir bantuan sosial, dana duka, dan keakraban pengurus.",
         "Mempererat tali rasa kekeluargaan di lingkungan jurusan.",
       ],
-      color: "bg-white text-black",
+      color: "from-rose-500 to-pink-700",
+      accent: "bg-rose-100 text-rose-900",
     },
   ];
 
@@ -156,87 +169,95 @@ function Divisi() {
   return (
     <section
       id="divisi"
-      className="bg-[#F8FAFC] min-h-screen py-24 px-4 md:px-12 relative overflow-hidden border-b border-slate-200 text-slate-900"
+      className="bg-slate-50/50 min-h-screen py-24 px-4 md:px-12 relative overflow-hidden border-b border-slate-200 text-slate-900"
     >
-      {/* DECORATIVE GRADIENT GLOWS */}
-      <div className="absolute top-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-20 left-10 w-96 h-96 bg-sky-400/10 rounded-full blur-3xl pointer-events-none" />
+      {/* BACKGROUND DECORATIVE GLOWS */}
+      <div className="absolute top-20 right-10 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-20 left-10 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-[1400px] mx-auto relative z-10">
         {/* SECTION TITLE */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-10"
+          className="text-center mb-12"
         >
-          <div className="inline-block bg-blue-50 text-[#0B25B7] border border-blue-200 px-4 py-1.5 font-black text-xs md:text-sm uppercase rounded-full shadow-sm mb-3">
-            Kabinet & Sinergi Organisasi
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#0B25B7] to-indigo-700 text-white border border-blue-400/30 px-5 py-2 font-black text-xs md:text-sm uppercase rounded-full shadow-lg shadow-blue-600/20 mb-4">
+            <Sparkles size={15} className="text-yellow-300 animate-pulse" />
+            <span>STRUKTUR ORGANISASI KABINET 2025/2026</span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-slate-900">
-            Struktur Divisi HIMAMI
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-slate-900">
+            STRUKTUR DIVISI <span className="bg-gradient-to-r from-[#0B25B7] via-blue-600 to-indigo-600 bg-clip-text text-transparent">HIMAMI</span>
           </h2>
-          <p className="text-slate-600 font-semibold max-w-xl mx-auto mt-3 text-base md:text-lg">
-            Klik pada setiap divisi atau pengurus untuk melihat detail foto, peran, dan program kerja utama.
+          <p className="text-slate-600 font-semibold max-w-2xl mx-auto mt-4 text-base md:text-lg">
+            Klik pada setiap kartu BPH atau Divisi untuk melihat profil resmi, tanggung jawab, dan program kerja utama.
           </p>
         </motion.div>
 
         {/* CATEGORY FILTER TABS */}
-        <div className="flex justify-center flex-wrap gap-3 mb-12">
+        <div className="flex justify-center flex-wrap gap-3 mb-14">
           {[
             { id: "all", label: "SEMUA BAGIAN" },
             { id: "bph", label: "BADAN PENGURUS HARIAN (BPH)" },
             { id: "divisi", label: "DIVISI OPERASIONAL" },
           ].map((tab) => (
-            <button
+            <motion.button
               key={tab.id}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               onClick={() => setFilter(tab.id)}
               className={`
-                px-5 py-2.5 font-black text-xs md:text-sm rounded-xl border transition-all cursor-pointer uppercase tracking-wider shadow-sm
+                px-6 py-3 font-black text-xs md:text-sm rounded-2xl border transition-all cursor-pointer uppercase tracking-wider shadow-md
                 ${filter === tab.id 
-                  ? "bg-[#0B25B7] text-white border-blue-900 shadow-lg shadow-blue-600/30" 
+                  ? "bg-gradient-to-r from-[#0B25B7] to-indigo-700 text-white border-blue-900 shadow-xl shadow-blue-600/30" 
                   : "bg-white text-slate-700 border-slate-200 hover:border-[#0B25B7] hover:text-[#0B25B7]"}
               `}
             >
               {tab.label}
-            </button>
+            </motion.button>
           ))}
         </div>
 
         {/* CARDS GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredRoles.map((role, idx) => (
             <motion.div
               key={role.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: idx * 0.06 }}
+              transition={{ duration: 0.4, delay: idx * 0.05 }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.03, y: -6 }}
               onClick={() => setSelected(role)}
               className="
-                bg-white text-slate-900 border-2 border-slate-200 shadow-xl rounded-2xl
-                p-6 cursor-pointer flex flex-col justify-between group relative overflow-hidden
+                bg-white text-slate-900 border-2 border-slate-200 shadow-xl rounded-[28px]
+                p-7 cursor-pointer flex flex-col justify-between group relative overflow-hidden
                 hover:border-[#0B25B7] transition-all
               "
             >
+              {/* ACCENT GLOW STRIP */}
+              <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#0B25B7] to-indigo-600" />
+
               {/* TOP BADGE */}
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-[10px] font-black uppercase bg-blue-50 text-[#0B25B7] border border-blue-200 px-3 py-1 rounded-full">
-                  {role.category === "bph" ? "BPH" : "DIVISI"}
+              <div className="flex items-center justify-between mb-5">
+                <span className="text-[10px] font-black uppercase bg-blue-50 text-[#0B25B7] border border-blue-200 px-3.5 py-1 rounded-full shadow-xs">
+                  {role.category === "bph" ? "BPH UTAMA" : "DIVISI OPERASIONAL"}
                 </span>
-                <span className="text-xs font-bold text-slate-500 group-hover:text-[#0B25B7] transition-colors">Lihat Detail ›</span>
+                <span className="text-xs font-extrabold text-slate-400 group-hover:text-[#0B25B7] transition-colors flex items-center gap-1">
+                  Detail <ChevronRight size={14} />
+                </span>
               </div>
 
               {/* CARD MAIN INFO */}
-              <div className="flex items-center gap-4 my-2">
-                <div className="w-14 h-14 bg-blue-50 text-[#0B25B7] border border-blue-200 rounded-xl flex items-center justify-center shadow-sm shrink-0 group-hover:bg-[#0B25B7] group-hover:text-white transition-colors">
+              <div className="flex items-center gap-5 my-2">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-50 to-indigo-50 text-[#0B25B7] border-2 border-blue-200 rounded-2xl flex items-center justify-center shadow-md shrink-0 group-hover:bg-[#0B25B7] group-hover:text-white transition-colors duration-300">
                   {role.icon}
                 </div>
 
                 <div>
-                  <h3 className="font-black text-xl leading-tight text-slate-900 group-hover:text-[#0B25B7] transition-colors">
+                  <h3 className="font-black text-2xl leading-tight text-slate-900 group-hover:text-[#0B25B7] transition-colors">
                     {role.title}
                   </h3>
                   <p className="text-xs font-semibold text-slate-600 mt-1 line-clamp-1">
@@ -245,10 +266,26 @@ function Divisi() {
                 </div>
               </div>
 
+              {/* PHOTO PREVIEW THUMBNAIL */}
+              <div className="mt-5 relative h-44 bg-slate-100 rounded-2xl overflow-hidden border border-slate-200">
+                <img
+                  src={role.image}
+                  alt={role.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent flex items-end p-3">
+                  <span className="text-[11px] font-black text-white uppercase flex items-center gap-1.5">
+                    <Eye size={14} className="text-yellow-300" /> Profil Pengurus
+                  </span>
+                </div>
+              </div>
+
               {/* CARD FOOTER */}
-              <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-black text-slate-500">
-                <span className="group-hover:text-[#0B25B7] transition-colors">KLIK UNTUK PROFIL</span>
-                <span className="bg-slate-100 text-slate-700 border border-slate-200 px-2 py-0.5 rounded text-[10px]">VERIFIED</span>
+              <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-black text-slate-500">
+                <span className="group-hover:text-[#0B25B7] transition-colors">KLIK PROFIL RESMI</span>
+                <span className="bg-blue-50 text-[#0B25B7] border border-blue-200 px-2.5 py-0.5 rounded-md text-[10px] uppercase font-extrabold">
+                  VERIFIED
+                </span>
               </div>
             </motion.div>
           ))}
@@ -263,26 +300,26 @@ function Divisi() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelected(null)}
-            className="fixed inset-0 bg-slate-900/60 backdrop-blur-md flex items-center justify-center z-50 p-4 overflow-y-auto"
+            className="fixed inset-0 bg-slate-950/70 backdrop-blur-md flex items-center justify-center z-50 p-4 overflow-y-auto"
           >
             <motion.div
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white border-2 border-slate-200 rounded-3xl shadow-2xl max-w-lg w-full overflow-hidden relative my-8 text-slate-900"
+              className="bg-white border-2 border-slate-200 rounded-[32px] shadow-2xl max-w-xl w-full overflow-hidden relative my-8 text-slate-900"
             >
               {/* MODAL HEADER */}
-              <div className="bg-[#0B25B7] text-white p-5 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="bg-white text-[#0B25B7] p-2.5 rounded-xl shadow-sm">
+              <div className="bg-gradient-to-r from-[#0B25B7] to-indigo-800 text-white p-6 flex items-center justify-between">
+                <div className="flex items-center gap-3.5">
+                  <div className="bg-white text-[#0B25B7] p-3 rounded-2xl shadow-md">
                     {selected.icon}
                   </div>
                   <div>
-                    <h3 className="text-2xl font-black uppercase text-white leading-tight">
+                    <h3 className="text-2xl md:text-3xl font-black uppercase text-white leading-tight">
                       {selected.title}
                     </h3>
-                    <p className="text-xs font-black text-yellow-300 uppercase">
+                    <p className="text-xs font-black text-yellow-300 uppercase tracking-wider">
                       HIMAMI Kabinet 2025/2026
                     </p>
                   </div>
@@ -290,47 +327,47 @@ function Divisi() {
 
                 <button
                   onClick={() => setSelected(null)}
-                  className="bg-white/10 hover:bg-white text-white hover:text-red-600 p-2 rounded-xl border border-white/20 transition-all cursor-pointer"
+                  className="bg-white/10 hover:bg-white text-white hover:text-red-600 p-2.5 rounded-xl border border-white/20 transition-all cursor-pointer shadow-md"
                 >
                   <X size={20} />
                 </button>
               </div>
 
               {/* MODAL BODY */}
-              <div className="p-6 space-y-5">
+              <div className="p-6 md:p-8 space-y-6">
                 {/* PHOTO & TAGLINE */}
-                <div className="flex flex-col sm:flex-row items-center gap-5 bg-slate-50 p-4 border border-slate-200 rounded-2xl">
+                <div className="flex flex-col sm:flex-row items-center gap-6 bg-slate-50 p-5 border-2 border-slate-200 rounded-3xl">
                   <img
                     src={selected.image}
                     alt={selected.title}
-                    className="w-36 h-36 object-cover border border-slate-300 rounded-xl bg-white shrink-0 shadow-md"
+                    className="w-40 h-40 object-cover border-2 border-slate-300 rounded-2xl bg-white shrink-0 shadow-lg"
                   />
-                  <div>
-                    <span className="text-[10px] font-black uppercase bg-blue-50 text-[#0B25B7] px-2.5 py-0.5 border border-blue-200 rounded-full inline-block mb-1">
-                      Deskripsi Peran
+                  <div className="space-y-2 text-center sm:text-left">
+                    <span className="text-[10px] font-black uppercase bg-blue-50 text-[#0B25B7] px-3 py-1 border border-blue-200 rounded-full inline-block">
+                      Peran & Tagline
                     </span>
-                    <h4 className="text-lg font-black text-slate-900 leading-snug">
+                    <h4 className="text-xl font-black text-slate-900 leading-snug">
                       {selected.tagline}
                     </h4>
-                    <p className="text-xs font-semibold text-slate-600 mt-2">
-                      Aset foto resmi perwakilan struktur pengurus HIMAMI.
+                    <p className="text-xs font-semibold text-slate-600">
+                      Dokumentasi foto perwakilan pengurus resmi HIMAMI UNAS PASIM.
                     </p>
                   </div>
                 </div>
 
                 {/* JOBDESK LIST */}
-                <div>
-                  <h4 className="font-black text-sm uppercase text-slate-900 mb-3 flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 bg-[#0B25B7] rounded-full"></span>
+                <div className="space-y-3">
+                  <h4 className="font-black text-sm uppercase text-slate-900 flex items-center gap-2">
+                    <Award size={18} className="text-[#0B25B7]" />
                     Tugas Utama & Program Kerja:
                   </h4>
-                  <div className="space-y-2">
+                  <div className="space-y-2.5">
                     {selected.jobdesk.map((item, index) => (
                       <div
                         key={index}
-                        className="flex gap-3 items-start bg-blue-50/50 p-3.5 border border-blue-100 rounded-xl text-xs font-bold text-slate-800"
+                        className="flex gap-3 items-start bg-blue-50/70 p-4 border border-blue-100 rounded-2xl text-xs md:text-sm font-bold text-slate-800 shadow-xs"
                       >
-                        <CheckCircle2 size={16} className="text-[#0B25B7] shrink-0 mt-0.5" />
+                        <CheckCircle2 size={18} className="text-[#0B25B7] shrink-0 mt-0.5" />
                         <span>{item}</span>
                       </div>
                     ))}
@@ -339,12 +376,12 @@ function Divisi() {
               </div>
 
               {/* MODAL FOOTER */}
-              <div className="bg-slate-50 p-4 border-t border-slate-200 text-center">
+              <div className="bg-slate-50 p-5 border-t border-slate-200 text-center">
                 <button
                   onClick={() => setSelected(null)}
-                  className="bg-[#0B25B7] hover:bg-blue-800 text-white border border-blue-900 px-8 py-2.5 rounded-xl font-black text-sm shadow-lg shadow-blue-600/30 transition-all cursor-pointer uppercase tracking-wider"
+                  className="bg-gradient-to-r from-[#0B25B7] to-indigo-700 hover:from-blue-800 hover:to-indigo-800 text-white border border-blue-900 px-10 py-3 rounded-2xl font-black text-sm shadow-xl shadow-blue-600/30 transition-all cursor-pointer uppercase tracking-wider"
                 >
-                  TUTUP JENDELA
+                  TUTUP PROFIL
                 </button>
               </div>
             </motion.div>

@@ -1,5 +1,16 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { CalendarDays, MapPin, Clock, Search, X, CheckCircle, ExternalLink, Sparkles } from "lucide-react";
+import {
+  CalendarDays,
+  MapPin,
+  Clock,
+  Search,
+  X,
+  CheckCircle,
+  ExternalLink,
+  Sparkles,
+  UserCheck,
+  Tag,
+} from "lucide-react";
 import { useState } from "react";
 
 function Events() {
@@ -55,8 +66,9 @@ function Events() {
   ];
 
   const filteredEvents = events.filter((ev) => {
-    const matchesSearch = ev.title.toLowerCase().includes(search.toLowerCase()) ||
-                          ev.desc.toLowerCase().includes(search.toLowerCase());
+    const matchesSearch =
+      ev.title.toLowerCase().includes(search.toLowerCase()) ||
+      ev.desc.toLowerCase().includes(search.toLowerCase());
     const matchesCategory = category === "all" || ev.category === category;
     return matchesSearch && matchesCategory;
   });
@@ -64,11 +76,11 @@ function Events() {
   return (
     <section
       id="event"
-      className="scroll-mt-20 min-h-screen bg-[#F8FAFC] px-4 md:px-8 py-20 overflow-hidden relative border-b border-slate-200 text-slate-900"
+      className="scroll-mt-20 min-h-screen bg-slate-50/50 px-4 md:px-8 py-20 overflow-hidden relative border-b border-slate-200 text-slate-900"
     >
       {/* BACKGROUND DECORATIONS */}
-      <div className="absolute top-20 left-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-sky-400/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-20 left-10 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-sky-400/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-[1400px] mx-auto relative z-10">
         {/* TITLE */}
@@ -79,29 +91,30 @@ function Events() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <div className="inline-block bg-blue-50 text-[#0B25B7] border border-blue-200 px-4 py-1.5 font-black text-xs md:text-sm uppercase rounded-full shadow-sm mb-3">
-            Program Kerja & Agenda HIMAMI
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#0B25B7] to-indigo-700 text-white border border-blue-400/30 px-5 py-2 font-black text-xs md:text-sm uppercase rounded-full shadow-lg shadow-blue-600/20 mb-4">
+            <Sparkles size={15} className="text-yellow-300 animate-pulse" />
+            <span>AGENDA & PROGRAM KERJA HIMAMI</span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-black uppercase text-slate-900 tracking-tight">
-            Kegiatan & Event HIMAMI
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase text-slate-900 tracking-tight">
+            KEGIATAN & <span className="bg-gradient-to-r from-[#0B25B7] via-blue-600 to-indigo-600 bg-clip-text text-transparent">EVENT</span>
           </h2>
-          <p className="text-slate-600 font-semibold max-w-xl mx-auto mt-3 text-base md:text-lg">
-            Ikuti berbagai seminar, workshop, osjur, dan malam keakraban untuk mengasah wawasan dan jaringan relasi.
+          <p className="text-slate-600 font-semibold max-w-2xl mx-auto mt-4 text-base md:text-lg">
+            Ikuti berbagai seminar, workshop, osjur, dan malam keakraban untuk mengasah wawasan IT dan relasi mahasiswa.
           </p>
         </motion.div>
 
         {/* SEARCH & FILTER BAR */}
-        <div className="bg-white border-2 border-slate-200 shadow-xl rounded-2xl p-4 md:p-6 mb-12 text-slate-900 max-w-4xl mx-auto backdrop-blur-md">
+        <div className="bg-white border-2 border-slate-200 shadow-2xl rounded-3xl p-5 md:p-7 mb-14 text-slate-900 max-w-4xl mx-auto backdrop-blur-md">
           <div className="flex flex-col md:flex-row gap-4 items-center">
             {/* SEARCH INPUT */}
             <div className="relative w-full flex-1">
-              <Search className="absolute left-3.5 top-3.5 text-slate-400" size={18} />
+              <Search className="absolute left-4 top-3.5 text-slate-400" size={20} />
               <input
                 type="text"
                 placeholder="Cari nama kegiatan atau kata kunci..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl font-semibold text-sm text-slate-900 placeholder-slate-400 outline-none focus:border-[#0B25B7] transition-colors"
+                className="w-full pl-12 pr-4 py-3 bg-slate-50 border-2 border-slate-200 rounded-2xl font-semibold text-sm text-slate-900 placeholder-slate-400 outline-none focus:border-[#0B25B7] transition-all shadow-xs"
               />
             </div>
 
@@ -118,10 +131,12 @@ function Events() {
                   key={cat.id}
                   onClick={() => setCategory(cat.id)}
                   className={`
-                    px-3 py-2 font-black text-xs rounded-xl border transition-all cursor-pointer uppercase tracking-wider shadow-sm
-                    ${category === cat.id 
-                      ? "bg-[#0B25B7] text-white border-blue-900 shadow-md" 
-                      : "bg-slate-50 text-slate-700 border-slate-200 hover:border-[#0B25B7] hover:text-[#0B25B7]"}
+                    px-4 py-2.5 font-black text-xs rounded-xl border transition-all cursor-pointer uppercase tracking-wider shadow-xs
+                    ${
+                      category === cat.id
+                        ? "bg-gradient-to-r from-[#0B25B7] to-indigo-700 text-white border-blue-900 shadow-md"
+                        : "bg-slate-50 text-slate-700 border-slate-200 hover:border-[#0B25B7] hover:text-[#0B25B7]"
+                    }
                   `}
                 >
                   {cat.label}
@@ -133,12 +148,12 @@ function Events() {
 
         {/* EVENTS GRID */}
         {filteredEvents.length === 0 ? (
-          <div className="bg-white text-slate-900 border-2 border-slate-200 p-12 text-center max-w-md mx-auto rounded-2xl shadow-xl">
+          <div className="bg-white text-slate-900 border-2 border-slate-200 p-12 text-center max-w-md mx-auto rounded-3xl shadow-xl">
             <p className="font-black text-xl">Kegiatan tidak ditemukan!</p>
             <p className="text-xs font-semibold text-slate-600 mt-2">Coba gunakan kata kunci pencarian yang lain.</p>
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {filteredEvents.map((ev, i) => (
               <motion.div
                 key={i}
@@ -154,7 +169,7 @@ function Events() {
                   border-2
                   border-slate-200
                   hover:border-[#0B25B7]
-                  rounded-2xl
+                  rounded-[28px]
                   shadow-xl
                   overflow-hidden
                   cursor-pointer
@@ -165,45 +180,45 @@ function Events() {
               >
                 <div>
                   {/* IMAGE HEADER WITH STATUS BADGE */}
-                  <div className="relative h-48 overflow-hidden border-b border-slate-100 bg-slate-100">
+                  <div className="relative h-52 overflow-hidden border-b border-slate-100 bg-slate-100">
                     <img
                       src={ev.image}
                       alt={ev.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    <div className="absolute top-3 left-3 bg-[#0B25B7] text-white border border-blue-900 px-3 py-0.5 font-black text-[10px] rounded-full uppercase shadow-md">
+                    <div className="absolute top-3 left-3 bg-[#0B25B7] text-white border border-blue-900 px-3.5 py-1 font-black text-[10px] rounded-full uppercase shadow-lg">
                       {ev.status}
                     </div>
                   </div>
 
                   {/* CONTENT */}
-                  <div className="p-5 space-y-3">
-                    <h3 className="font-black text-lg leading-tight text-slate-900 group-hover:text-[#0B25B7] transition-colors">
+                  <div className="p-6 space-y-3.5">
+                    <h3 className="font-black text-xl leading-snug text-slate-900 group-hover:text-[#0B25B7] transition-colors">
                       {ev.title}
                     </h3>
 
                     <div className="text-xs font-semibold text-slate-700 space-y-2 pt-1">
                       <p className="flex items-center gap-2">
-                        <CalendarDays size={15} className="text-[#0B25B7] shrink-0" /> {ev.date}
+                        <CalendarDays size={16} className="text-[#0B25B7] shrink-0" /> {ev.date}
                       </p>
                       <p className="flex items-center gap-2">
-                        <Clock size={15} className="text-[#0B25B7] shrink-0" /> {ev.time}
+                        <Clock size={16} className="text-[#0B25B7] shrink-0" /> {ev.time}
                       </p>
                       <p className="flex items-center gap-2">
-                        <MapPin size={15} className="text-[#0B25B7] shrink-0" /> {ev.place}
+                        <MapPin size={16} className="text-[#0B25B7] shrink-0" /> {ev.place}
                       </p>
                     </div>
 
-                    <p className="text-xs text-slate-600 font-semibold line-clamp-2 leading-relaxed pt-2 border-t border-slate-100">
+                    <p className="text-xs text-slate-600 font-semibold line-clamp-2 leading-relaxed pt-3 border-t border-slate-100">
                       {ev.desc}
                     </p>
                   </div>
                 </div>
 
                 {/* CARD FOOTER */}
-                <div className="p-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+                <div className="p-5 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
                   <span className="text-xs font-black text-[#0B25B7] group-hover:underline">DETAIL EVENT</span>
-                  <span className="bg-[#0B25B7] text-white p-1.5 rounded-lg group-hover:translate-x-1 transition-transform shadow-md">
+                  <span className="bg-[#0B25B7] text-white p-2 rounded-xl group-hover:translate-x-1 transition-transform shadow-md">
                     <ExternalLink size={14} />
                   </span>
                 </div>
@@ -221,7 +236,7 @@ function Events() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelected(null)}
-            className="fixed inset-0 bg-slate-900/60 backdrop-blur-md flex items-center justify-center z-50 p-4 overflow-y-auto"
+            className="fixed inset-0 bg-slate-950/70 backdrop-blur-md flex items-center justify-center z-50 p-4 overflow-y-auto"
           >
             <motion.div
               initial={{ scale: 0.9, y: 20 }}
@@ -233,51 +248,51 @@ function Events() {
                 text-slate-900
                 border-2
                 border-slate-200
-                rounded-3xl
+                rounded-[32px]
                 shadow-2xl
-                max-w-lg w-full
+                max-w-xl w-full
                 overflow-hidden
                 relative
                 my-8
               "
             >
               {/* BANNER IMAGE */}
-              <div className="relative h-56 border-b border-slate-200 bg-slate-100">
+              <div className="relative h-60 border-b border-slate-200 bg-slate-100">
                 <img src={selected.image} alt={selected.title} className="w-full h-full object-cover" />
                 <button
                   onClick={() => setSelected(null)}
-                  className="absolute top-3 right-3 bg-white/90 text-slate-700 p-2 border border-slate-300 rounded-xl font-bold hover:bg-red-600 hover:text-white transition-all cursor-pointer shadow-md"
+                  className="absolute top-4 right-4 bg-white/90 text-slate-800 p-2.5 border border-slate-300 rounded-2xl font-bold hover:bg-red-600 hover:text-white transition-all cursor-pointer shadow-lg"
                 >
                   <X size={20} />
                 </button>
               </div>
 
               {/* MODAL BODY */}
-              <div className="p-6 space-y-4">
-                <div className="inline-block bg-blue-50 text-[#0B25B7] border border-blue-200 px-3 py-1 font-black text-xs uppercase rounded-full">
+              <div className="p-6 md:p-8 space-y-5">
+                <div className="inline-block bg-blue-50 text-[#0B25B7] border border-blue-200 px-3.5 py-1 font-black text-xs uppercase rounded-full">
                   {selected.category.toUpperCase()}
                 </div>
 
-                <h3 className="text-2xl font-black leading-snug text-slate-900 uppercase">
+                <h3 className="text-2xl md:text-3xl font-black leading-tight text-slate-900 uppercase">
                   {selected.title}
                 </h3>
 
-                <div className="bg-slate-50 p-4 border border-slate-200 rounded-2xl space-y-2 text-xs font-semibold text-slate-800">
-                  <div className="flex items-center gap-2">
-                    <CalendarDays size={16} className="text-[#0B25B7]" />
+                <div className="bg-slate-50 p-5 border border-slate-200 rounded-2xl space-y-2.5 text-xs md:text-sm font-semibold text-slate-800 shadow-xs">
+                  <div className="flex items-center gap-2.5">
+                    <CalendarDays size={18} className="text-[#0B25B7]" />
                     <span>Tanggal: {selected.date}</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Clock size={16} className="text-[#0B25B7]" />
+                  <div className="flex items-center gap-2.5">
+                    <Clock size={18} className="text-[#0B25B7]" />
                     <span>Waktu: {selected.time}</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <MapPin size={16} className="text-[#0B25B7]" />
+                  <div className="flex items-center gap-2.5">
+                    <MapPin size={18} className="text-[#0B25B7]" />
                     <span>Lokasi: {selected.place}</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Sparkles size={16} className="text-[#0B25B7]" />
-                    <span>Narasumber/Penyelenggara: {selected.speaker}</span>
+                  <div className="flex items-center gap-2.5">
+                    <UserCheck size={18} className="text-[#0B25B7]" />
+                    <span>Penyelenggara: {selected.speaker}</span>
                   </div>
                 </div>
 
@@ -285,24 +300,24 @@ function Events() {
                   {selected.desc}
                 </p>
 
-                <div className="bg-emerald-50 border border-emerald-200 p-3.5 rounded-xl flex items-center gap-2.5 text-xs font-bold text-emerald-900">
-                  <CheckCircle size={18} className="text-emerald-600 shrink-0" />
+                <div className="bg-emerald-50 border border-emerald-200 p-4 rounded-2xl flex items-center gap-3 text-xs md:text-sm font-bold text-emerald-900 shadow-xs">
+                  <CheckCircle size={20} className="text-emerald-600 shrink-0" />
                   <span>Pendaftaran Terbuka Untuk Seluruh Mahasiswa Manajemen Informatika</span>
                 </div>
               </div>
 
               {/* MODAL FOOTER */}
-              <div className="bg-slate-50 p-4 border-t border-slate-200 flex gap-3">
+              <div className="bg-slate-50 p-5 border-t border-slate-200 flex gap-4">
                 <a
                   href="#contact"
                   onClick={() => setSelected(null)}
-                  className="bg-[#0B25B7] hover:bg-blue-800 text-white border border-blue-900 py-3 px-6 rounded-xl font-black text-xs md:text-sm flex-1 text-center shadow-lg shadow-blue-600/30 transition-all uppercase tracking-wider"
+                  className="bg-gradient-to-r from-[#0B25B7] to-indigo-700 hover:from-blue-800 hover:to-indigo-800 text-white border border-blue-900 py-3.5 px-6 rounded-2xl font-black text-xs md:text-sm flex-1 text-center shadow-xl shadow-blue-600/30 transition-all uppercase tracking-wider"
                 >
                   DAFTAR KEGIATAN
                 </a>
                 <button
                   onClick={() => setSelected(null)}
-                  className="bg-slate-200 hover:bg-slate-300 text-slate-800 border border-slate-300 py-3 px-6 rounded-xl font-black text-xs md:text-sm transition-all cursor-pointer uppercase tracking-wider"
+                  className="bg-slate-200 hover:bg-slate-300 text-slate-800 border border-slate-300 py-3.5 px-6 rounded-2xl font-black text-xs md:text-sm transition-all cursor-pointer uppercase tracking-wider"
                 >
                   TUTUP
                 </button>
