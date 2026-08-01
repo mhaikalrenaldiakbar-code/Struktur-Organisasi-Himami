@@ -228,11 +228,11 @@ function About() {
   return (
     <section
       id="about"
-      className="scroll-mt-20 min-h-screen bg-slate-50/50 px-4 md:px-8 py-20 overflow-hidden relative border-b border-slate-200 text-slate-900"
+      className="scroll-mt-20 min-h-screen bg-[#0B0F19] text-slate-100 px-4 md:px-8 py-20 overflow-hidden relative border-b border-slate-800/80"
     >
       {/* GLOWING GRADIENT BACKGROUND HALOS */}
-      <div className="absolute top-20 left-1/4 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-20 right-1/4 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-20 left-1/4 w-[500px] h-[500px] bg-blue-600/15 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-20 right-1/4 w-[500px] h-[500px] bg-indigo-600/15 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-[1400px] mx-auto relative z-10">
         {/* HEADER TITLE */}
@@ -247,14 +247,14 @@ function About() {
             whileHover={{ scale: 1.05 }}
             className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-[#0B25B7] text-white border border-blue-400/30 px-5 py-2 font-black text-xs md:text-sm uppercase rounded-full shadow-lg shadow-blue-600/20 mb-4"
           >
-            <Zap size={15} className="text-yellow-300 animate-pulse" />
+            <Zap size={15} className="text-amber-300 animate-pulse" />
             <span>PROFIL, SEJARAH & LANDASAN ORMAWA</span>
           </motion.div>
 
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-slate-900">
-            TENTANG <span className="bg-gradient-to-r from-[#0B25B7] via-blue-600 to-indigo-600 bg-clip-text text-transparent">HIMAMI</span>
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white">
+            TENTANG <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-amber-300">HIMAMI</span>
           </h2>
-          <p className="text-slate-600 font-semibold max-w-2xl mx-auto mt-4 text-base md:text-lg leading-relaxed">
+          <p className="text-slate-400 font-medium max-w-2xl mx-auto mt-4 text-base md:text-lg leading-relaxed">
             Mengenal Sejarah Pendirian, Visi & Misi, Konstitusi AD/ART, serta Atribut PDH dan Bendera Kebanggaan HIMAMI UNAS PASIM.
           </p>
         </motion.div>
@@ -273,11 +273,11 @@ function About() {
               whileTap={{ scale: 0.96 }}
               onClick={() => setActiveTab(tab.id)}
               className={`
-                flex items-center gap-2.5 px-6 py-3.5 rounded-2xl font-black text-xs md:text-sm uppercase tracking-wider transition-all cursor-pointer shadow-md
+                flex items-center gap-2.5 px-6 py-3.5 rounded-2xl font-black text-xs md:text-sm uppercase tracking-wider transition-all cursor-pointer shadow-lg
                 ${
                   activeTab === tab.id
-                    ? "bg-gradient-to-r from-[#0B25B7] to-indigo-700 text-white shadow-xl shadow-blue-600/30 border-2 border-blue-900"
-                    : "bg-white text-slate-700 hover:bg-slate-100 hover:text-[#0B25B7] border-2 border-slate-200"
+                    ? "bg-gradient-to-r from-[#0B25B7] to-indigo-600 text-white shadow-xl shadow-blue-600/30 border border-blue-400/40 scale-105"
+                    : "bg-slate-900/90 text-slate-300 hover:bg-slate-800 hover:text-white border border-slate-800"
                 }
               `}
             >

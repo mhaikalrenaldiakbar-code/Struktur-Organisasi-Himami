@@ -25,30 +25,30 @@ function Footer() {
   };
 
   return (
-    <footer className="bg-[#0B25B7] text-white border-t-4 border-blue-950 pt-12 pb-8 relative overflow-hidden">
+    <footer className="bg-[#090D16] text-slate-100 border-t border-slate-800/80 pt-16 pb-10 relative overflow-hidden">
       {/* Decorative gradient glow */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-10 w-80 h-80 bg-sky-400/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-10 w-80 h-80 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
       
-      <div className="max-w-[1400px] mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-blue-400/30 relative z-10">
+      <div className="max-w-[1400px] mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-slate-800/80 relative z-10">
         {/* BRANDING */}
-        <div className="md:col-span-2 space-y-4">
-          <div className="flex items-center gap-3">
-            <div className="bg-white p-2 rounded-xl border border-blue-900 shadow-md">
-              <img src={logo} alt="HIMAMI Logo" className="w-8 h-8" />
+        <div className="md:col-span-2 space-y-5">
+          <div className="flex items-center gap-3.5">
+            <div className="bg-slate-900 p-2.5 rounded-2xl border border-blue-500/30 shadow-lg">
+              <img src={logo} alt="HIMAMI Logo" className="w-9 h-9" />
             </div>
             <div>
-              <h2 className="text-2xl font-black tracking-tight text-white uppercase">
+              <h2 className="text-2xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-amber-300 uppercase">
                 HIMAMI
               </h2>
-              <p className="text-xs font-black text-yellow-300 uppercase tracking-wide">
+              <p className="text-xs font-black text-amber-400 uppercase tracking-widest mt-0.5">
                 Himpunan Mahasiswa Manajemen Informatika
               </p>
             </div>
           </div>
 
-          <p className="text-blue-100/90 text-sm max-w-md leading-relaxed font-semibold">
-            Wadah pengembangan minat, bakat, keilmuan, dan karakter mahasiswa Manajemen Informatika. Bersatu, Berkarya, Bermanfaat.
+          <p className="text-slate-400 text-sm max-w-md leading-relaxed font-medium">
+            Wadah pengembangan minat, bakat, keilmuan, dan karakter mahasiswa Manajemen Informatika Universitas Nasional PASIM Bandung. Bersatu, Berkarya, Bermanfaat.
           </p>
 
           <div className="flex gap-3 pt-2">
@@ -57,7 +57,7 @@ function Footer() {
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
-              className="bg-white text-[#0B25B7] border border-white p-2.5 rounded-xl hover:bg-yellow-300 hover:text-black transition-all duration-200 shadow-md"
+              className="bg-slate-900 text-blue-400 border border-slate-800 p-3 rounded-xl hover:bg-gradient-to-r hover:from-blue-600 hover:to-indigo-600 hover:text-white transition-all duration-300 shadow-md"
             >
               <InstagramIcon size={18} />
             </a>
@@ -66,14 +66,14 @@ function Footer() {
               target="_blank"
               rel="noreferrer"
               aria-label="WhatsApp"
-              className="bg-white text-[#0B25B7] border border-white p-2.5 rounded-xl hover:bg-yellow-300 hover:text-black transition-all duration-200 shadow-md"
+              className="bg-slate-900 text-emerald-400 border border-slate-800 p-3 rounded-xl hover:bg-gradient-to-r hover:from-blue-600 hover:to-indigo-600 hover:text-white transition-all duration-300 shadow-md"
             >
               <MessageSquare size={18} />
             </a>
             <a
               href="mailto:himami@email.com"
               aria-label="Email"
-              className="bg-white text-[#0B25B7] border border-white p-2.5 rounded-xl hover:bg-yellow-300 hover:text-black transition-all duration-200 shadow-md"
+              className="bg-slate-900 text-sky-400 border border-slate-800 p-3 rounded-xl hover:bg-gradient-to-r hover:from-blue-600 hover:to-indigo-600 hover:text-white transition-all duration-300 shadow-md"
             >
               <Mail size={18} />
             </a>
@@ -82,11 +82,11 @@ function Footer() {
 
         {/* QUICK NAVIGATION */}
         <div>
-          <h3 className="text-base font-black uppercase text-yellow-300 mb-4 flex items-center gap-2 tracking-wider">
-            <span className="w-2.5 h-2.5 bg-yellow-300 rounded-full"></span>
+          <h3 className="text-base font-black uppercase text-amber-400 mb-5 flex items-center gap-2 tracking-wider">
+            <span className="w-2.5 h-2.5 bg-amber-400 rounded-full animate-pulse"></span>
             Navigasi
           </h3>
-          <ul className="space-y-2.5 text-sm font-semibold">
+          <ul className="space-y-3 text-sm font-medium">
             {[
               { name: "Beranda", href: "#home" },
               { name: "Tentang Kami", href: "#about" },
@@ -98,9 +98,9 @@ function Footer() {
               <li key={idx}>
                 <a
                   href={item.href}
-                  className="text-blue-100 hover:text-yellow-300 transition-colors flex items-center gap-1.5"
+                  className="text-slate-400 hover:text-white transition-colors flex items-center gap-2 group"
                 >
-                  <span className="text-yellow-300 font-bold">›</span> {item.name}
+                  <span className="text-amber-400 font-bold group-hover:translate-x-1 transition-transform">›</span> {item.name}
                 </a>
               </li>
             ))}
@@ -108,42 +108,42 @@ function Footer() {
         </div>
 
         {/* DEVELOPER CREDIT CARD */}
-        <div className="bg-blue-900/80 border border-blue-400/40 p-5 rounded-2xl relative shadow-xl backdrop-blur-sm">
-          <div className="absolute -top-3 right-4 bg-yellow-300 text-black border border-black text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase shadow-md">
+        <div className="bg-slate-900/90 border border-slate-800 p-6 rounded-3xl relative shadow-2xl backdrop-blur-xl group hover:border-blue-500/50 transition-all duration-300">
+          <div className="absolute -top-3 right-4 bg-amber-400 text-slate-950 text-[10px] font-black px-3 py-0.5 rounded-full uppercase shadow-md">
             Official Developer
           </div>
           <h3 className="text-sm font-black uppercase text-white mb-2 flex items-center gap-2">
-            <Code2 size={18} className="text-yellow-300" /> Web Builder
+            <Code2 size={18} className="text-amber-400" /> Web Builder
           </h3>
-          <p className="text-xs text-blue-100 leading-relaxed mb-3 font-semibold">
+          <p className="text-xs text-slate-400 leading-relaxed mb-4 font-medium">
             Website ini dirancang dan dikembangkan secara eksklusif oleh:
           </p>
-          <div className="bg-white text-[#0B25B7] border border-white p-3 rounded-xl font-black text-center shadow-md hover:bg-yellow-300 hover:text-black transition-colors">
-            <span className="text-base font-black uppercase tracking-wide">M. Haikal</span>
-            <p className="text-[10px] font-extrabold text-blue-950">Lead Fullstack Developer & Designer</p>
+          <div className="bg-slate-950 text-white border border-blue-500/30 p-3.5 rounded-2xl font-black text-center shadow-lg group-hover:border-amber-400/50 transition-colors">
+            <span className="text-base font-black uppercase tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-amber-300">M. Haikal</span>
+            <p className="text-[10px] font-bold text-slate-400 mt-0.5">Lead Fullstack Developer & Designer</p>
           </div>
         </div>
       </div>
 
       {/* FOOTER BOTTOM & BACK TO TOP */}
-      <div className="max-w-[1400px] mx-auto px-6 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-bold text-blue-100/90 relative z-10">
+      <div className="max-w-[1400px] mx-auto px-6 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-semibold text-slate-400 relative z-10">
         <div className="flex items-center gap-1.5 flex-wrap justify-center">
           <span>© {new Date().getFullYear()} HIMAMI • Crafted with</span>
-          <Heart size={14} className="text-red-400 fill-red-400 inline" />
+          <Heart size={14} className="text-rose-500 fill-rose-500 inline" />
           <span>by</span>
-          <span className="bg-yellow-300 text-black px-2.5 py-0.5 border border-black rounded-md font-black uppercase text-[11px]">
+          <span className="bg-amber-400 text-slate-950 px-2.5 py-0.5 rounded-md font-black uppercase text-[11px]">
             M. Haikal
           </span>
         </div>
 
         <motion.button
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.05, y: -2 }}
           whileTap={{ scale: 0.95 }}
           onClick={scrollToTop}
-          className="bg-white hover:bg-yellow-300 text-[#0B25B7] hover:text-black border border-white px-4 py-2 rounded-xl font-black shadow-md flex items-center gap-2 transition-all cursor-pointer text-xs uppercase tracking-wider"
+          className="bg-slate-900 hover:bg-gradient-to-r hover:from-[#0B25B7] hover:to-blue-600 text-slate-200 hover:text-white border border-slate-800 px-5 py-2.5 rounded-xl font-black shadow-lg flex items-center gap-2 transition-all cursor-pointer text-xs uppercase tracking-wider"
         >
           <span>KEMBALI KE ATAS</span>
-          <ArrowUp size={16} />
+          <ArrowUp size={16} className="text-amber-400" />
         </motion.button>
       </div>
     </footer>

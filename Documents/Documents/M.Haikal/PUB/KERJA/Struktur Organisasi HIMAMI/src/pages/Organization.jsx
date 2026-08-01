@@ -169,14 +169,14 @@ function Divisi() {
   return (
     <section
       id="divisi"
-      className="bg-slate-50/50 min-h-screen py-24 px-4 md:px-12 relative overflow-hidden border-b border-slate-200 text-slate-900"
+      className="scroll-mt-20 min-h-screen bg-[#0B0F19] text-slate-100 px-4 md:px-8 py-20 relative overflow-hidden border-b border-slate-800/80"
     >
-      {/* BACKGROUND DECORATIVE GLOWS */}
-      <div className="absolute top-20 right-10 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-20 left-10 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none" />
+      {/* DECORATIVE AMBIENT LIGHTING */}
+      <div className="absolute top-10 left-10 w-96 h-96 bg-blue-600/15 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-96 h-96 bg-indigo-600/15 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-[1400px] mx-auto relative z-10">
-        {/* SECTION TITLE */}
+        {/* TITLE SECTION */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -185,13 +185,13 @@ function Divisi() {
           className="text-center mb-12"
         >
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#0B25B7] to-indigo-700 text-white border border-blue-400/30 px-5 py-2 font-black text-xs md:text-sm uppercase rounded-full shadow-lg shadow-blue-600/20 mb-4">
-            <Sparkles size={15} className="text-yellow-300 animate-pulse" />
+            <Sparkles size={15} className="text-amber-300 animate-pulse" />
             <span>STRUKTUR ORGANISASI KABINET 2025/2026</span>
           </div>
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-slate-900">
-            STRUKTUR DIVISI <span className="bg-gradient-to-r from-[#0B25B7] via-blue-600 to-indigo-600 bg-clip-text text-transparent">HIMAMI</span>
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white">
+            STRUKTUR DIVISI <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-amber-300">HIMAMI</span>
           </h2>
-          <p className="text-slate-600 font-semibold max-w-2xl mx-auto mt-4 text-base md:text-lg">
+          <p className="text-slate-400 font-medium max-w-2xl mx-auto mt-4 text-base md:text-lg">
             Klik pada setiap kartu BPH atau Divisi untuk melihat profil resmi, tanggung jawab, dan program kerja utama.
           </p>
         </motion.div>
@@ -209,10 +209,10 @@ function Divisi() {
               whileTap={{ scale: 0.96 }}
               onClick={() => setFilter(tab.id)}
               className={`
-                px-6 py-3 font-black text-xs md:text-sm rounded-2xl border transition-all cursor-pointer uppercase tracking-wider shadow-md
+                px-6 py-3 font-black text-xs md:text-sm rounded-2xl border transition-all cursor-pointer uppercase tracking-wider shadow-lg
                 ${filter === tab.id 
-                  ? "bg-gradient-to-r from-[#0B25B7] to-indigo-700 text-white border-blue-900 shadow-xl shadow-blue-600/30" 
-                  : "bg-white text-slate-700 border-slate-200 hover:border-[#0B25B7] hover:text-[#0B25B7]"}
+                  ? "bg-gradient-to-r from-[#0B25B7] to-indigo-600 text-white border-blue-400/40 shadow-xl shadow-blue-600/30 scale-105" 
+                  : "bg-slate-900/90 text-slate-300 border-slate-800 hover:border-blue-500/50 hover:text-white"}
               `}
             >
               {tab.label}
@@ -232,35 +232,35 @@ function Divisi() {
               whileHover={{ scale: 1.03, y: -6 }}
               onClick={() => setSelected(role)}
               className="
-                bg-white text-slate-900 border-2 border-slate-200 shadow-xl rounded-[28px]
-                p-7 cursor-pointer flex flex-col justify-between group relative overflow-hidden
-                hover:border-[#0B25B7] transition-all
+                bg-slate-900/80 text-slate-100 border border-slate-800 shadow-xl rounded-[28px]
+                p-7 cursor-pointer flex flex-col justify-between group relative overflow-hidden backdrop-blur-xl
+                hover:border-blue-500/50 transition-all duration-300
               "
             >
               {/* ACCENT GLOW STRIP */}
-              <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#0B25B7] to-indigo-600" />
+              <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#0B25B7] via-blue-500 to-indigo-600" />
 
               {/* TOP BADGE */}
               <div className="flex items-center justify-between mb-5">
-                <span className="text-[10px] font-black uppercase bg-blue-50 text-[#0B25B7] border border-blue-200 px-3.5 py-1 rounded-full shadow-xs">
+                <span className="text-[10px] font-black uppercase bg-blue-500/10 text-blue-400 border border-blue-500/30 px-3.5 py-1 rounded-full shadow-xs">
                   {role.category === "bph" ? "BPH UTAMA" : "DIVISI OPERASIONAL"}
                 </span>
-                <span className="text-xs font-extrabold text-slate-400 group-hover:text-[#0B25B7] transition-colors flex items-center gap-1">
+                <span className="text-xs font-extrabold text-slate-400 group-hover:text-blue-400 transition-colors flex items-center gap-1">
                   Detail <ChevronRight size={14} />
                 </span>
               </div>
 
               {/* CARD MAIN INFO */}
               <div className="flex items-center gap-5 my-2">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-50 to-indigo-50 text-[#0B25B7] border-2 border-blue-200 rounded-2xl flex items-center justify-center shadow-md shrink-0 group-hover:bg-[#0B25B7] group-hover:text-white transition-colors duration-300">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-600/20 to-indigo-600/20 text-blue-400 border border-blue-500/30 rounded-2xl flex items-center justify-center shadow-md shrink-0 group-hover:bg-[#0B25B7] group-hover:text-white transition-colors duration-300">
                   {role.icon}
                 </div>
 
                 <div>
-                  <h3 className="font-black text-2xl leading-tight text-slate-900 group-hover:text-[#0B25B7] transition-colors">
+                  <h3 className="font-black text-2xl leading-tight text-white group-hover:text-amber-300 transition-colors">
                     {role.title}
                   </h3>
-                  <p className="text-xs font-semibold text-slate-600 mt-1 line-clamp-1">
+                  <p className="text-xs font-semibold text-slate-400 mt-1 line-clamp-1">
                     {role.tagline}
                   </p>
                 </div>

@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { X, ChevronLeft, ChevronRight, Maximize2, Tag, Sparkles } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Maximize2, Tag } from "lucide-react";
 
 function Gallery() {
   const [selectedIndex, setSelectedIndex] = useState(null);
@@ -84,11 +84,11 @@ function Gallery() {
   return (
     <section
       id="gallery"
-      className="scroll-mt-20 min-h-screen bg-[#0B0F19] text-slate-100 px-4 md:px-8 py-20 overflow-hidden relative border-b border-slate-800/80"
+      className="scroll-mt-20 min-h-screen bg-[#F8FAFC] px-4 md:px-8 py-20 overflow-hidden relative border-b border-slate-200 text-slate-900"
     >
       {/* DECORATIVE GRADIENT GLOWS */}
-      <div className="absolute top-20 right-10 w-[500px] h-[500px] bg-blue-600/15 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-20 left-10 w-[500px] h-[500px] bg-indigo-600/15 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-20 left-10 w-96 h-96 bg-sky-400/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-[1400px] mx-auto relative z-10">
         {/* TITLE */}
@@ -97,22 +97,21 @@ function Gallery() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-10"
         >
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#0B25B7] to-indigo-700 text-white border border-blue-400/30 px-5 py-2 font-black text-xs md:text-sm uppercase rounded-full shadow-lg shadow-blue-600/20 mb-4">
-            <Sparkles size={15} className="text-amber-300 animate-pulse" />
-            <span>DOKUMENTASI & MEMORI KEGIATAN</span>
+          <div className="inline-block bg-blue-50 text-[#0B25B7] border border-blue-200 px-4 py-1.5 font-black text-xs md:text-sm uppercase rounded-full shadow-sm mb-3">
+            Dokumentasi & Memori
           </div>
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase text-white tracking-tight">
-            GALERI <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-amber-300">HIMAMI</span>
+          <h2 className="text-4xl md:text-6xl font-black uppercase text-slate-900 tracking-tight">
+            Galeri Kegiatan HIMAMI
           </h2>
-          <p className="text-slate-400 font-medium max-w-2xl mx-auto mt-4 text-base md:text-lg">
-            Momen berharga, kebersamaan, dan rekam jejak program kerja pengurus serta anggota HIMAMI UNAS PASIM.
+          <p className="text-slate-600 font-semibold max-w-xl mx-auto mt-3 text-base md:text-lg">
+            Kumpulan momen berharga, kebersamaan, serta rekam jejak aktivitas pengurus dan anggota HIMAMI.
           </p>
         </motion.div>
 
         {/* CATEGORY TABS */}
-        <div className="flex justify-center flex-wrap gap-3 mb-14">
+        <div className="flex justify-center flex-wrap gap-2.5 mb-12">
           {[
             { id: "all", label: "SEMUA FOTO" },
             { id: "workshop", label: "WORKSHOP & CODING" },
@@ -120,27 +119,23 @@ function Gallery() {
             { id: "musyawarah", label: "RAPAT & MUSYAWARAH" },
             { id: "makrab", label: "MAKRAB & SOSIAL" },
           ].map((tab) => (
-            <motion.button
+            <button
               key={tab.id}
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
               onClick={() => setActiveTag(tab.id)}
               className={`
-                px-5 py-3 font-black text-xs md:text-sm rounded-2xl border transition-all cursor-pointer uppercase tracking-wider shadow-lg
-                ${
-                  activeTag === tab.id
-                    ? "bg-gradient-to-r from-[#0B25B7] to-indigo-600 text-white border-blue-400/40 shadow-xl shadow-blue-600/30 scale-105"
-                    : "bg-slate-900/90 text-slate-300 border-slate-800 hover:border-blue-500/50 hover:text-white"
-                }
+                px-4 py-2 font-black text-xs rounded-xl border transition-all cursor-pointer uppercase tracking-wider shadow-sm
+                ${activeTag === tab.id 
+                  ? "bg-[#0B25B7] text-white border-blue-900 shadow-md" 
+                  : "bg-white text-slate-700 border-slate-200 hover:border-[#0B25B7] hover:text-[#0B25B7]"}
               `}
             >
               {tab.label}
-            </motion.button>
+            </button>
           ))}
         </div>
 
         {/* GALLERY GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {filteredItems.map((item, idx) => (
             <motion.div
               key={idx}
@@ -151,46 +146,45 @@ function Gallery() {
               whileHover={{ scale: 1.04, y: -6 }}
               onClick={() => setSelectedIndex(idx)}
               className="
-                bg-slate-900/80
-                border
-                border-slate-800
-                hover:border-blue-500/50
-                rounded-[28px]
+                bg-white
+                border-2
+                border-slate-200
+                hover:border-[#0B25B7]
+                rounded-2xl
                 shadow-xl
                 overflow-hidden
                 cursor-pointer
                 group
                 relative
-                backdrop-blur-xl
-                transition-all duration-300
+                transition-all
               "
             >
-              <div className="relative h-60 overflow-hidden bg-slate-950">
+              <div className="relative h-56 overflow-hidden bg-slate-100">
                 <img
                   src={item.src}
                   alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
 
                 {/* OVERLAY HOVER */}
-                <div className="absolute inset-0 bg-slate-950/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4 text-center backdrop-blur-xs">
-                  <div className="bg-blue-600 text-white p-3.5 rounded-2xl shadow-xl border border-blue-400/40">
-                    <Maximize2 size={22} />
+                <div className="absolute inset-0 bg-[#0B25B7]/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4 text-center">
+                  <div className="bg-white text-[#0B25B7] p-3 rounded-xl shadow-lg">
+                    <Maximize2 size={20} />
                   </div>
                 </div>
 
-                <div className="absolute top-3 left-3 bg-[#0B25B7] text-white text-[10px] font-black px-3 py-1 rounded-full border border-blue-400/40 uppercase shadow-lg">
+                <div className="absolute top-3 left-3 bg-[#0B25B7] text-white text-[10px] font-black px-2.5 py-0.5 rounded-full border border-blue-900 uppercase shadow-md">
                   {item.tag}
                 </div>
               </div>
 
               {/* CARD CAPTION */}
-              <div className="p-5 bg-slate-900/90 border-t border-slate-800/80">
-                <h3 className="font-black text-base text-white group-hover:text-amber-300 transition-colors line-clamp-1">
+              <div className="p-4 bg-white border-t border-slate-100">
+                <h3 className="font-black text-sm text-slate-900 group-hover:text-[#0B25B7] transition-colors line-clamp-1">
                   {item.title}
                 </h3>
-                <p className="text-xs font-semibold text-slate-500 mt-1 flex items-center gap-1.5">
-                  <Tag size={13} className="text-[#0B25B7]" /> {item.date}
+                <p className="text-[11px] font-semibold text-slate-500 mt-1 flex items-center gap-1.5">
+                  <Tag size={12} className="text-[#0B25B7]" /> {item.date}
                 </p>
               </div>
             </motion.div>
@@ -206,12 +200,12 @@ function Gallery() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedIndex(null)}
-            className="fixed inset-0 bg-slate-950/80 backdrop-blur-md flex items-center justify-center z-50 p-4"
+            className="fixed inset-0 bg-slate-900/80 backdrop-blur-md flex items-center justify-center z-50 p-4"
           >
             {/* CLOSE BUTTON */}
             <button
               onClick={() => setSelectedIndex(null)}
-              className="absolute top-6 right-6 bg-white text-slate-800 p-3.5 rounded-2xl border border-slate-300 hover:bg-red-600 hover:text-white z-50 cursor-pointer transition-all shadow-xl"
+              className="absolute top-6 right-6 bg-white text-slate-800 p-3 rounded-xl border border-slate-300 hover:bg-red-600 hover:text-white z-50 cursor-pointer transition-all shadow-md"
             >
               <X size={24} />
             </button>
@@ -222,7 +216,7 @@ function Gallery() {
                 e.stopPropagation();
                 handlePrev();
               }}
-              className="absolute left-6 bg-white text-[#0B25B7] p-3.5 rounded-2xl border border-slate-300 hover:bg-[#0B25B7] hover:text-white z-50 cursor-pointer hidden sm:block transition-all shadow-xl"
+              className="absolute left-4 bg-white text-[#0B25B7] p-3 rounded-xl border border-slate-300 hover:bg-[#0B25B7] hover:text-white z-50 cursor-pointer hidden sm:block transition-all shadow-lg"
             >
               <ChevronLeft size={28} />
             </button>
@@ -233,7 +227,7 @@ function Gallery() {
                 e.stopPropagation();
                 handleNext();
               }}
-              className="absolute right-6 bg-white text-[#0B25B7] p-3.5 rounded-2xl border border-slate-300 hover:bg-[#0B25B7] hover:text-white z-50 cursor-pointer hidden sm:block transition-all shadow-xl"
+              className="absolute right-4 bg-white text-[#0B25B7] p-3 rounded-xl border border-slate-300 hover:bg-[#0B25B7] hover:text-white z-50 cursor-pointer hidden sm:block transition-all shadow-lg"
             >
               <ChevronRight size={28} />
             </button>
@@ -244,22 +238,22 @@ function Gallery() {
               animate={{ scale: 1 }}
               exit={{ scale: 0.9 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white border-2 border-slate-200 rounded-[32px] shadow-2xl max-w-4xl w-full overflow-hidden text-slate-900"
+              className="bg-white border-2 border-slate-200 rounded-3xl shadow-2xl max-w-4xl w-full overflow-hidden text-slate-900"
             >
-              <div className="bg-slate-950 p-3 md:p-5 text-center">
+              <div className="bg-slate-950 p-2 md:p-4 text-center">
                 <img
                   src={filteredItems[selectedIndex].src}
                   alt={filteredItems[selectedIndex].title}
-                  className="max-h-[65vh] w-auto mx-auto object-contain rounded-2xl border border-slate-800"
+                  className="max-h-[65vh] w-auto mx-auto object-contain rounded-xl border border-slate-800"
                 />
               </div>
 
-              <div className="p-6 md:p-8 bg-white flex flex-col md:flex-row items-center justify-between gap-5 border-t border-slate-100">
+              <div className="p-6 bg-white flex flex-col md:flex-row items-center justify-between gap-4 border-t border-slate-100">
                 <div>
-                  <span className="bg-blue-50 text-[#0B25B7] border border-blue-200 px-3.5 py-1 font-black text-xs uppercase rounded-full">
+                  <span className="bg-blue-50 text-[#0B25B7] border border-blue-200 px-3 py-1 font-black text-xs uppercase rounded-full">
                     {filteredItems[selectedIndex].tag}
                   </span>
-                  <h3 className="text-xl md:text-2xl font-black text-slate-900 uppercase mt-2">
+                  <h3 className="text-xl font-black text-slate-900 uppercase mt-2">
                     {filteredItems[selectedIndex].title}
                   </h3>
                   <p className="text-xs font-semibold text-slate-500 mt-1">
@@ -267,22 +261,22 @@ function Gallery() {
                   </p>
                 </div>
 
-                <div className="flex gap-3">
+                <div className="flex gap-2">
                   <button
                     onClick={handlePrev}
-                    className="sm:hidden bg-slate-100 text-slate-800 px-4 py-2.5 rounded-xl border border-slate-300 font-bold text-xs"
+                    className="sm:hidden bg-slate-100 text-slate-800 px-4 py-2 rounded-xl border border-slate-300 font-bold text-xs"
                   >
-                    ‹ PREV
+                    ‹ SEBELUMNYA
                   </button>
                   <button
                     onClick={handleNext}
-                    className="sm:hidden bg-slate-100 text-slate-800 px-4 py-2.5 rounded-xl border border-slate-300 font-bold text-xs"
+                    className="sm:hidden bg-slate-100 text-slate-800 px-4 py-2 rounded-xl border border-slate-300 font-bold text-xs"
                   >
-                    NEXT ›
+                    SELANJUTNYA ›
                   </button>
                   <button
                     onClick={() => setSelectedIndex(null)}
-                    className="bg-gradient-to-r from-[#0B25B7] to-indigo-700 hover:from-blue-800 hover:to-indigo-800 text-white px-6 py-2.5 rounded-xl font-black text-xs shadow-lg shadow-blue-600/30 transition-all uppercase tracking-wider"
+                    className="bg-[#0B25B7] hover:bg-blue-800 text-white px-5 py-2 rounded-xl border border-blue-900 font-black text-xs shadow-lg shadow-blue-600/30 transition-all uppercase tracking-wider"
                   >
                     TUTUP
                   </button>
