@@ -4,6 +4,6 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  // Otomatis '/' jika di Vercel, '/HIMAMI/' untuk GitHub Pages
-  base: process.env.VERCEL ? "/" : "/HIMAMI/",
+  // Relatif './' bekerja sempurna baik di Vercel, GitHub Pages, maupun Local
+  base: "./",
 });
