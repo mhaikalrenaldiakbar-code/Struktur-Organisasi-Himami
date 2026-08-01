@@ -22,6 +22,9 @@ import {
   ChevronRight,
   BookOpen,
   Sparkles,
+  Zap,
+  Eye,
+  Layers,
 } from "lucide-react";
 import logo from "../assets/logo-himami.png";
 import pdhImg from "../assets/pdh-himami.png";
@@ -29,6 +32,7 @@ import benderaImg from "../assets/bendera-himami.png";
 
 function About() {
   const [activeTab, setActiveTab] = useState("sejarah");
+  const [selectedImage, setSelectedImage] = useState(null);
 
   // NILAI UTAMA ORGANISASI
   const values = [
@@ -36,21 +40,29 @@ function About() {
       title: "INTEGRITAS",
       desc: "Menjunjung tinggi kejujuran, etika akademik, dan tanggung jawab moral dalam setiap tindakan.",
       icon: <ShieldCheck size={28} />,
+      color: "from-blue-500 to-indigo-600",
+      accentBg: "bg-blue-50 text-blue-600 border-blue-200",
     },
     {
       title: "INOVASI",
       desc: "Berani berpikir kritis, kreatif, dan menciptakan solusi teknologi yang berdaya guna.",
       icon: <Lightbulb size={28} />,
+      color: "from-amber-400 to-orange-500",
+      accentBg: "bg-amber-50 text-amber-600 border-amber-200",
     },
     {
       title: "KEKELUARGAAN",
       desc: "Membangun rasa solidaritas, saling mendukung, dan keterikatan yang erat antar sesama anggota.",
       icon: <HeartHandshake size={28} />,
+      color: "from-rose-500 to-pink-600",
+      accentBg: "bg-rose-50 text-rose-600 border-rose-200",
     },
     {
       title: "PROFESIONAL",
       desc: "Berorientasi pada kualitas terbaik, disiplin tinggi, dan tata kelola himpunan yang handal.",
       icon: <Award size={28} />,
+      color: "from-emerald-500 to-teal-600",
+      accentBg: "bg-emerald-50 text-emerald-600 border-emerald-200",
     },
   ];
 
@@ -150,26 +162,31 @@ function About() {
     {
       icon: <Hexagon className="text-blue-600" size={24} />,
       title: "Segi Enam",
+      badge: "Keluarga & Aspirasi",
       desc: "Melambangkan keluarga besar HIMAMI merupakan satu Kesatuan yang sulit dipisahkan serta memiliki arti menampung aspirasi anggota HIMAMI.",
     },
     {
-      icon: <Triangle className="text-blue-800 rotate-180" size={24} />,
+      icon: <Triangle className="text-indigo-600 rotate-180" size={24} />,
       title: "2 Segitiga",
+      badge: "Inklusivitas & Arah",
       desc: "Melambangkan bahwa HIMAMI terdiri atas mahasiswa beasiswa dan non beasiswa. Bentuk segitiga tersendiri memiliki makna menunjukkan pergerakan berdasarkan kemana HIMAMI menunjuk atau sebagai arah/puncak keberhasilan.",
     },
     {
       icon: <Users className="text-[#0B25B7]" size={24} />,
       title: "Kumpulan Orang",
+      badge: "Sinergi Kebersamaan",
       desc: "Melambangkan HIMAMI yang terdiri dari berbagai individu untuk mencapai tujuan bersama.",
     },
     {
       icon: <Monitor className="text-sky-500" size={24} />,
       title: "Komputer",
+      badge: "Wawasan Teknologi",
       desc: "Melambangkan pengetahuan yang luas.",
     },
     {
-      icon: <Building2 className="text-red-600" size={24} />,
+      icon: <Building2 className="text-rose-600" size={24} />,
       title: "Logo Universitas",
+      badge: "Naungan Institusi",
       desc: "Melambangkan bahwa HIMAMI berkedudukan di Universitas Nasional PASIM.",
     },
   ];
@@ -179,31 +196,31 @@ function About() {
     {
       name: "Biru Muda",
       hex: "#38BDF8",
-      bgClass: "bg-sky-400",
+      bgClass: "bg-sky-400 shadow-sky-400/40",
       desc: "Melambangkan suatu hubungan profesionalitas, kecerdasan, kepercayaan diri.",
     },
     {
       name: "Biru Tua",
       hex: "#0B25B7",
-      bgClass: "bg-[#0B25B7]",
+      bgClass: "bg-[#0B25B7] shadow-blue-600/40",
       desc: "Melambangkan kebijaksanaan, teliti, tegas.",
     },
     {
       name: "Merah",
       hex: "#EF4444",
-      bgClass: "bg-red-500",
+      bgClass: "bg-red-500 shadow-red-500/40",
       desc: "Melambangkan semangat dalam berorganisasi.",
     },
     {
       name: "Hitam",
       hex: "#0F172A",
-      bgClass: "bg-slate-900",
+      bgClass: "bg-slate-900 shadow-slate-900/40",
       desc: "Melambangkan integritas anggota.",
     },
     {
       name: "Putih",
       hex: "#FFFFFF",
-      bgClass: "bg-white border border-slate-300",
+      bgClass: "bg-white border-2 border-slate-300 shadow-slate-200",
       desc: "Melambangkan anggota yang suci dalam pikiran, perkataan, serta tindakan.",
     },
   ];
@@ -211,11 +228,11 @@ function About() {
   return (
     <section
       id="about"
-      className="scroll-mt-20 min-h-screen bg-[#F8FAFC] px-4 md:px-8 py-20 overflow-hidden relative border-b border-slate-200 text-slate-900"
+      className="scroll-mt-20 min-h-screen bg-slate-50/50 px-4 md:px-8 py-20 overflow-hidden relative border-b border-slate-200 text-slate-900"
     >
-      {/* BACKGROUND DECORATIONS */}
-      <div className="absolute top-1/3 left-10 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-96 h-96 bg-sky-400/5 rounded-full blur-3xl pointer-events-none" />
+      {/* GLOWING GRADIENT BACKGROUND HALOS */}
+      <div className="absolute top-20 left-1/4 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-20 right-1/4 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-[1400px] mx-auto relative z-10">
         {/* HEADER TITLE */}
@@ -224,42 +241,49 @@ function About() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-10"
+          className="text-center mb-12"
         >
-          <div className="inline-block bg-blue-50 text-[#0B25B7] border border-blue-200 px-4 py-1.5 font-black text-xs md:text-sm uppercase rounded-full shadow-sm mb-3">
-            Profil, Sejarah & Landasan Konstitusi
-          </div>
-          <h2 className="text-4xl md:text-6xl font-black uppercase text-slate-900 tracking-tight">
-            Tentang HIMAMI
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-[#0B25B7] text-white border border-blue-400/30 px-5 py-2 font-black text-xs md:text-sm uppercase rounded-full shadow-lg shadow-blue-600/20 mb-4"
+          >
+            <Zap size={15} className="text-yellow-300 animate-pulse" />
+            <span>PROFIL, SEJARAH & LANDASAN ORMAWA</span>
+          </motion.div>
+
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-slate-900">
+            TENTANG <span className="bg-gradient-to-r from-[#0B25B7] via-blue-600 to-indigo-600 bg-clip-text text-transparent">HIMAMI</span>
           </h2>
-          <p className="text-slate-600 font-semibold max-w-2xl mx-auto mt-3 text-base md:text-lg">
-            Mengenal Sejarah Pendirian, Visi & Misi, Anggaran Dasar/Anggaran Rumah Tangga (AD/ART), serta Atribut PDH & Bendera HIMAMI UNAS PASIM.
+          <p className="text-slate-600 font-semibold max-w-2xl mx-auto mt-4 text-base md:text-lg leading-relaxed">
+            Mengenal Sejarah Pendirian, Visi & Misi, Konstitusi AD/ART, serta Atribut PDH dan Bendera Kebanggaan HIMAMI UNAS PASIM.
           </p>
         </motion.div>
 
         {/* NAVIGATION SUB-TABS */}
-        <div className="flex flex-wrap items-center justify-center gap-2 md:gap-4 mb-12">
+        <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4 mb-14">
           {[
             { id: "sejarah", label: "Sejarah Pendirian", icon: <History size={18} /> },
             { id: "visimisi", label: "Visi, Misi & Nilai", icon: <Target size={18} /> },
             { id: "adart", label: "AD / ART Organisasi", icon: <Scale size={18} /> },
             { id: "lambang", label: "Lambang, Atribut & Bendera", icon: <Flag size={18} /> },
           ].map((tab) => (
-            <button
+            <motion.button
               key={tab.id}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               onClick={() => setActiveTab(tab.id)}
               className={`
-                flex items-center gap-2 px-5 py-3 rounded-2xl font-black text-xs md:text-sm uppercase tracking-wider transition-all cursor-pointer shadow-sm
+                flex items-center gap-2.5 px-6 py-3.5 rounded-2xl font-black text-xs md:text-sm uppercase tracking-wider transition-all cursor-pointer shadow-md
                 ${
                   activeTab === tab.id
-                    ? "bg-[#0B25B7] text-white shadow-lg shadow-blue-600/30 scale-105 border-2 border-blue-900"
-                    : "bg-white text-slate-700 hover:bg-slate-100 border-2 border-slate-200"
+                    ? "bg-gradient-to-r from-[#0B25B7] to-indigo-700 text-white shadow-xl shadow-blue-600/30 border-2 border-blue-900"
+                    : "bg-white text-slate-700 hover:bg-slate-100 hover:text-[#0B25B7] border-2 border-slate-200"
                 }
               `}
             >
               {tab.icon}
               <span>{tab.label}</span>
-            </button>
+            </motion.button>
           ))}
         </div>
 
@@ -269,160 +293,256 @@ function About() {
           {activeTab === "sejarah" && (
             <motion.div
               key="sejarah"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
+              exit={{ opacity: 0, y: -25 }}
               transition={{ duration: 0.4 }}
-              className="space-y-8"
+              className="space-y-12"
             >
-              {/* HERO SEJARAH CARD */}
-              <div className="bg-gradient-to-br from-[#0B25B7] to-blue-900 text-white rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden border-4 border-blue-950">
-                <div className="absolute top-0 right-0 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl pointer-events-none" />
+              {/* HERO SEJARAH BANNER */}
+              <div className="bg-gradient-to-br from-[#0B25B7] via-blue-900 to-indigo-950 text-white rounded-[32px] p-8 md:p-14 shadow-2xl relative overflow-hidden border-4 border-blue-950">
+                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-400/10 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none" />
 
-                <div className="grid lg:grid-cols-12 gap-8 items-center relative z-10">
-                  <div className="lg:col-span-8 space-y-5">
-                    <div className="inline-flex items-center gap-2 bg-yellow-300 text-slate-900 px-4 py-1.5 rounded-full font-black text-xs uppercase shadow-md">
+                <div className="grid lg:grid-cols-12 gap-10 items-center relative z-10">
+                  <div className="lg:col-span-8 space-y-6">
+                    <div className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-300 to-yellow-400 text-slate-950 px-4 py-2 rounded-full font-black text-xs uppercase shadow-lg">
                       <Clock size={16} />
-                      <span>30 OKTOBER 2021 • 10:42 WIB</span>
+                      <span>DIBAWAH NAUNGAN AD/ART • 30 OKTOBER 2021 (10:42 WIB)</span>
                     </div>
 
-                    <h3 className="text-3xl md:text-5xl font-black uppercase leading-tight tracking-tight text-white">
-                      Sejarah Berdirinya HIMAMI UNAS PASIM
+                    <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase leading-[1.05] tracking-tight text-white">
+                      Sejarah Pendirian HIMAMI UNAS PASIM
                     </h3>
 
                     <p className="text-blue-100 font-medium text-base md:text-lg leading-relaxed">
-                      Himpunan Mahasiswa Manajemen Informatika Universitas Nasional PASIM (HIMAMI UNAS PASIM) resmi didirikan pada hari <strong className="text-yellow-300">Sabtu, 30 Oktober 2021 tepat pada pukul 10:42 WIB</strong>.
+                      Himpunan Mahasiswa Manajemen Informatika Universitas Nasional PASIM (HIMAMI UNAS PASIM) resmi berdiri pada hari <strong className="text-yellow-300 font-black">Sabtu, 30 Oktober 2021 pukul 10:42 WIB</strong> melalui Musyawarah Mahasiswa.
                     </p>
 
                     <p className="text-blue-100 font-medium text-base md:text-lg leading-relaxed">
-                      Lembaga ini dibentuk sebagai lembaga eksekutif tertinggi di tingkat Program Studi D-3 Manajemen Informatika, Fakultas Ilmu Komputer, Universitas Nasional PASIM Bandung. HIMAMI lahir dari aspirasi dan semangat kebersamaan mahasiswa untuk menciptakan wadah resmi pengembangan intelektual, keterampilan teknologi informasi, serta karakter kepemimpinan yang berlandaskan asas kekeluargaan dan profesionalitas.
+                      Didesain sebagai lembaga eksekutif tertinggi di tingkat Program Studi D-3 Manajemen Informatika, Fakultas Ilmu Komputer, Universitas Nasional PASIM Bandung. HIMAMI menjadi rumah aspirasi, wadah penguat keilmuan teknologi, dan pengembang potensi kepemimpinan mahasiswa.
                     </p>
+
+                    <div className="pt-2 flex flex-wrap gap-3 text-xs font-bold text-blue-200">
+                      <span className="bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/20">
+                        📍 Kampus UNAS PASIM Bandung
+                      </span>
+                      <span className="bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/20">
+                        ⚡ Lembaga Eksekutif Jurusan
+                      </span>
+                      <span className="bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/20">
+                        🤝 Beasiswa & Non-Beasiswa
+                      </span>
+                    </div>
                   </div>
 
                   <div className="lg:col-span-4 flex justify-center">
-                    <div className="bg-white/10 backdrop-blur-md p-6 rounded-3xl border-2 border-white/20 text-center shadow-xl">
+                    <motion.div
+                      whileHover={{ scale: 1.05, rotate: 2 }}
+                      className="bg-white/10 backdrop-blur-xl p-8 rounded-[28px] border-2 border-white/20 text-center shadow-2xl relative group cursor-pointer"
+                      onClick={() => setSelectedImage(logo)}
+                    >
+                      <div className="absolute top-3 right-3 bg-yellow-400 text-slate-900 p-1.5 rounded-full shadow-md">
+                        <Eye size={14} />
+                      </div>
                       <img
                         src={logo}
                         alt="Logo HIMAMI"
-                        className="w-40 md:w-48 h-auto mx-auto drop-shadow-2xl hover:scale-105 transition-transform"
+                        className="w-44 md:w-52 h-auto mx-auto drop-shadow-2xl group-hover:scale-105 transition-transform"
                       />
                       <span className="block mt-4 text-xs font-black uppercase text-yellow-300 tracking-widest">
-                        LAMBANG KEBANGGAAN
+                        LAMBANG RESMI
                       </span>
                       <span className="block text-sm font-bold text-white">
                         HIMAMI UNAS PASIM
                       </span>
-                    </div>
+                    </motion.div>
                   </div>
                 </div>
               </div>
 
-              {/* TIMELINE & FAKTA SEJARAH */}
+              {/* TIMELINE HIGHLIGHT CARDS */}
               <div className="grid md:grid-cols-3 gap-6">
-                <div className="bg-white p-6 rounded-3xl border-2 border-slate-200 shadow-xl space-y-3">
-                  <div className="w-12 h-12 bg-blue-50 text-[#0B25B7] rounded-2xl flex items-center justify-center font-black">
-                    <Clock size={24} />
+                <motion.div
+                  whileHover={{ y: -6 }}
+                  className="bg-white p-7 rounded-3xl border-2 border-slate-200 hover:border-[#0B25B7] shadow-xl space-y-4 transition-all"
+                >
+                  <div className="w-14 h-14 bg-blue-50 border border-blue-200 text-[#0B25B7] rounded-2xl flex items-center justify-center font-black shadow-sm">
+                    <Clock size={28} />
                   </div>
                   <h4 className="text-xl font-black text-slate-900 uppercase">Waktu Pendirian</h4>
                   <p className="text-sm font-semibold text-slate-600 leading-relaxed">
-                    Didirikan secara resmi pada tanggal <strong className="text-[#0B25B7]">30 Oktober 2021</strong> pada jam presisi <strong className="text-[#0B25B7]">10:42 WIB</strong> sesuai penetapan Musyawarah Besar (MUBES).
+                    Resmi didirikan pada <strong className="text-[#0B25B7]">30 Oktober 2021</strong> pukul <strong className="text-[#0B25B7]">10:42 WIB</strong> sesuai kesepakatan Musyawarah Besar Mahasiswa.
                   </p>
-                </div>
+                </motion.div>
 
-                <div className="bg-white p-6 rounded-3xl border-2 border-slate-200 shadow-xl space-y-3">
-                  <div className="w-12 h-12 bg-blue-50 text-[#0B25B7] rounded-2xl flex items-center justify-center font-black">
-                    <MapPin size={24} />
+                <motion.div
+                  whileHover={{ y: -6 }}
+                  className="bg-white p-7 rounded-3xl border-2 border-slate-200 hover:border-[#0B25B7] shadow-xl space-y-4 transition-all"
+                >
+                  <div className="w-14 h-14 bg-indigo-50 border border-indigo-200 text-indigo-700 rounded-2xl flex items-center justify-center font-black shadow-sm">
+                    <MapPin size={28} />
                   </div>
-                  <h4 className="text-xl font-black text-slate-900 uppercase">Kedudukan</h4>
+                  <h4 className="text-xl font-black text-slate-900 uppercase">Kedudukan Organisasi</h4>
                   <p className="text-sm font-semibold text-slate-600 leading-relaxed">
-                    Berlokasi di Kampus Utama <strong className="text-[#0B25B7]">Universitas Nasional PASIM Bandung</strong>, bernaung di bawah Prodi D-3 Manajemen Informatika, Fakultas Ilmu Komputer.
+                    Berkedudukan di <strong className="text-indigo-700">Prodi D-3 Manajemen Informatika</strong>, Fakultas Ilmu Komputer, Universitas Nasional PASIM Bandung.
                   </p>
-                </div>
+                </motion.div>
 
-                <div className="bg-white p-6 rounded-3xl border-2 border-slate-200 shadow-xl space-y-3">
-                  <div className="w-12 h-12 bg-blue-50 text-[#0B25B7] rounded-2xl flex items-center justify-center font-black">
-                    <Users size={24} />
+                <motion.div
+                  whileHover={{ y: -6 }}
+                  className="bg-white p-7 rounded-3xl border-2 border-slate-200 hover:border-[#0B25B7] shadow-xl space-y-4 transition-all"
+                >
+                  <div className="w-14 h-14 bg-sky-50 border border-sky-200 text-sky-600 rounded-2xl flex items-center justify-center font-black shadow-sm">
+                    <Users size={28} />
                   </div>
-                  <h4 className="text-xl font-black text-slate-900 uppercase">Pemersatu Mahasiswa</h4>
+                  <h4 className="text-xl font-black text-slate-900 uppercase">Wadah Pemersatu</h4>
                   <p className="text-sm font-semibold text-slate-600 leading-relaxed">
-                    Menghimpun seluruh mahasiswa Manajemen Informatika, baik mahasiswa penerima <strong className="text-[#0B25B7]">beasiswa maupun non-beasiswa</strong>, dalam satu pergerakan yang solid.
+                    Menampung aspirasi dan potensi seluruh mahasiswa Manajemen Informatika, baik jalur <strong className="text-sky-600">beasiswa maupun reguler</strong>.
                   </p>
-                </div>
+                </motion.div>
               </div>
 
-              {/* IDENTITAS ATRIBUT PDH & BENDERA DI BAWAH SEJARAH */}
-              <div className="mt-12 bg-white border-2 border-slate-200 rounded-3xl p-6 md:p-10 shadow-xl space-y-8">
-                <div className="flex items-center gap-3 border-b border-slate-200 pb-4">
-                  <div className="p-3 bg-blue-50 text-[#0B25B7] rounded-2xl border border-blue-200">
-                    <Sparkles size={24} />
+              {/* DEDICATED VISUAL SHOWCASE: PDH & BENDERA HIMAMI */}
+              <div className="bg-white border-2 border-slate-200 rounded-[32px] p-6 md:p-10 shadow-2xl space-y-8">
+                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-slate-200 pb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="p-3 bg-blue-50 text-[#0B25B7] rounded-2xl border border-blue-200">
+                      <Sparkles size={26} />
+                    </div>
+                    <div>
+                      <h4 className="text-2xl md:text-3xl font-black uppercase text-slate-900">
+                        Atribut PDH & Bendera Kebanggaan
+                      </h4>
+                      <p className="text-sm font-semibold text-slate-600 mt-0.5">
+                        Identitas Visual Resmi HIMAMI UNAS PASIM Berdasarkan AD/ART BAB V
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="text-2xl font-black uppercase text-slate-900">
-                      Identitas Resmi: PDH & Bendera HIMAMI
-                    </h4>
-                    <p className="text-sm font-semibold text-slate-600">
-                      Atribut Pakaian Dinas Harian (PDH) dan Bendera Kebanggaan HIMAMI UNAS PASIM
-                    </p>
+
+                  <div className="inline-block bg-blue-50 text-[#0B25B7] border border-blue-200 px-4 py-1.5 rounded-full text-xs font-black uppercase">
+                    Lampiran Dokumen Resmi
                   </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-8">
-                  {/* VISUAL PDH */}
-                  <div className="bg-slate-50 border-2 border-slate-200 rounded-3xl p-6 shadow-md flex flex-col justify-between space-y-4 hover:border-[#0B25B7] transition-all">
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2">
-                        <Shirt className="text-[#0B25B7]" size={22} />
-                        <h5 className="font-black text-lg text-slate-900 uppercase">
-                          ATRIBUT (PDH HIMAMI)
-                        </h5>
+                <div className="grid lg:grid-cols-2 gap-8">
+                  {/* PDH VISUAL CARD */}
+                  <motion.div
+                    whileHover={{ y: -5 }}
+                    className="bg-slate-50 border-2 border-slate-200 rounded-3xl p-6 shadow-lg flex flex-col justify-between space-y-6 hover:border-[#0B25B7] transition-all group"
+                  >
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2.5">
+                          <div className="p-2 bg-amber-100 text-amber-800 rounded-xl">
+                            <Shirt size={22} />
+                          </div>
+                          <h5 className="font-black text-xl text-slate-900 uppercase">
+                            Gambar PDH HIMAMI
+                          </h5>
+                        </div>
+                        <span className="text-[10px] font-black uppercase bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
+                          Pakaian Dinas Harian
+                        </span>
                       </div>
-                      <p className="text-xs font-semibold text-slate-600">
-                        Kemeja Pakaian Dinas Harian (PDH) krem khaki aksen abu-abu dengan atribut lengkap pengurus.
+
+                      <p className="text-xs font-semibold text-slate-600 leading-relaxed">
+                        Kemeja PDH resmi pengurus berwarna Krem Khaki dengan aksen lis Abu-abu, bordir nama, jabatan, badge Bendera Indonesia & Logo HIMAMI.
                       </p>
                     </div>
 
-                    <div className="bg-white border-2 border-slate-200 rounded-2xl p-4 text-center shadow-inner overflow-hidden">
+                    {/* IMAGE CONTAINER */}
+                    <div
+                      onClick={() => setSelectedImage(pdhImg)}
+                      className="bg-white p-4 rounded-2xl border-2 border-slate-200 shadow-inner text-center relative cursor-pointer overflow-hidden group/img"
+                    >
                       <img
                         src={pdhImg}
                         alt="Gambar PDH HIMAMI"
-                        className="w-full h-auto max-h-72 object-contain mx-auto rounded-xl hover:scale-105 transition-transform duration-300"
+                        className="w-full h-auto max-h-80 object-contain mx-auto rounded-xl group-hover/img:scale-105 transition-transform duration-300"
                       />
-                      <span className="block mt-3 text-xs font-black text-[#0B25B7] uppercase">
-                        Gambar PDH Resmi HIMAMI
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* VISUAL BENDERA */}
-                  <div className="bg-slate-50 border-2 border-slate-200 rounded-3xl p-6 shadow-md flex flex-col justify-between space-y-4 hover:border-[#0B25B7] transition-all">
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2">
-                        <Flag className="text-[#0B25B7]" size={22} />
-                        <h5 className="font-black text-lg text-slate-900 uppercase">
-                          BENDERA HIMAMI
-                        </h5>
+                      <div className="absolute inset-0 bg-blue-900/20 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-xs">
+                        <span className="bg-white text-slate-900 font-black text-xs px-4 py-2 rounded-xl shadow-lg flex items-center gap-2">
+                          <Eye size={16} /> Perbesar Gambar
+                        </span>
                       </div>
-                      <p className="text-xs font-semibold text-slate-600">
-                        Bendera berlatar warna dasar abu-abu dengan logo HIMAMI dan identitas universitas.
+                    </div>
+
+                    <div className="bg-white p-4 rounded-2xl border border-slate-200 space-y-2 text-xs font-semibold text-slate-700">
+                      <span className="font-black text-[#0B25B7] uppercase block border-b border-slate-100 pb-1">
+                        Atribut Spesifikasi PDH:
+                      </span>
+                      <div className="grid grid-cols-2 gap-2 pt-1">
+                        <div className="bg-slate-50 p-2 rounded-lg border border-slate-200">
+                          <strong>Warna Utama:</strong> Krem Khaki & Abu
+                        </div>
+                        <div className="bg-slate-50 p-2 rounded-lg border border-slate-200">
+                          <strong>Dada Kanan:</strong> Bordir Nama Pengurus
+                        </div>
+                        <div className="bg-slate-50 p-2 rounded-lg border border-slate-200">
+                          <strong>Dada Kiri:</strong> Jabatan Pengurus
+                        </div>
+                        <div className="bg-slate-50 p-2 rounded-lg border border-slate-200">
+                          <strong>Sisi Lengan:</strong> Indonesia & Logo
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* BENDERA VISUAL CARD */}
+                  <motion.div
+                    whileHover={{ y: -5 }}
+                    className="bg-slate-50 border-2 border-slate-200 rounded-3xl p-6 shadow-lg flex flex-col justify-between space-y-6 hover:border-[#0B25B7] transition-all group"
+                  >
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2.5">
+                          <div className="p-2 bg-gray-200 text-gray-800 rounded-xl">
+                            <Flag size={22} />
+                          </div>
+                          <h5 className="font-black text-xl text-slate-900 uppercase">
+                            Gambar Bendera HIMAMI
+                          </h5>
+                        </div>
+                        <span className="text-[10px] font-black uppercase bg-gray-200 text-gray-900 px-3 py-1 rounded-full border border-gray-400">
+                          Panji Organisasi
+                        </span>
+                      </div>
+
+                      <p className="text-xs font-semibold text-slate-600 leading-relaxed">
+                        Bendera resmi HIMAMI UNAS PASIM berlatar warna dasar abu-abu dengan logo kebanggaan dan nama universitas.
                       </p>
                     </div>
 
-                    <div className="bg-white border-2 border-slate-200 rounded-2xl p-4 text-center shadow-inner overflow-hidden">
+                    {/* IMAGE CONTAINER */}
+                    <div
+                      onClick={() => setSelectedImage(benderaImg)}
+                      className="bg-white p-4 rounded-2xl border-2 border-slate-200 shadow-inner text-center relative cursor-pointer overflow-hidden group/img"
+                    >
                       <img
                         src={benderaImg}
                         alt="Gambar Bendera HIMAMI"
-                        className="w-full h-auto max-h-72 object-contain mx-auto rounded-xl hover:scale-105 transition-transform duration-300"
+                        className="w-full h-auto max-h-80 object-contain mx-auto rounded-xl group-hover/img:scale-105 transition-transform duration-300"
                       />
-                      <div className="mt-3 text-left bg-slate-100 p-3 rounded-xl border border-slate-200">
-                        <span className="block text-xs font-black text-slate-900 uppercase">
-                          Makna Warna Dasar Abu-abu:
+                      <div className="absolute inset-0 bg-blue-900/20 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-xs">
+                        <span className="bg-white text-slate-900 font-black text-xs px-4 py-2 rounded-xl shadow-lg flex items-center gap-2">
+                          <Eye size={16} /> Perbesar Gambar
                         </span>
-                        <p className="text-xs font-bold text-slate-700 mt-0.5">
-                          Melambangkan Keseriusan, Kestabilan, Kemandirian, dan Tanggung Jawab.
+                      </div>
+                    </div>
+
+                    <div className="bg-white p-4 rounded-2xl border border-slate-200 space-y-2 text-xs font-semibold text-slate-700">
+                      <span className="font-black text-[#0B25B7] uppercase block border-b border-slate-100 pb-1">
+                        Makna Warna Bendera:
+                      </span>
+                      <div className="bg-gray-50 p-3 rounded-xl border border-gray-200 flex items-start gap-3">
+                        <span className="w-5 h-5 bg-gray-500 rounded-md shrink-0 mt-0.5 shadow-xs" />
+                        <p className="text-xs font-bold text-slate-800 leading-relaxed">
+                          <strong className="text-slate-900">1. Warna Dasar Abu-abu:</strong> Memiliki arti Keseriusan, Kestabilan, Kemandirian, dan Tanggung Jawab.
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
               </div>
             </motion.div>
@@ -432,20 +552,23 @@ function About() {
           {activeTab === "visimisi" && (
             <motion.div
               key="visimisi"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
+              exit={{ opacity: 0, y: -25 }}
               transition={{ duration: 0.4 }}
               className="space-y-12"
             >
               {/* VISI & MISI GRID */}
               <div className="grid lg:grid-cols-2 gap-8">
                 {/* VISI CARD */}
-                <div className="bg-white text-slate-900 border-2 border-slate-200 hover:border-[#0B25B7] rounded-3xl shadow-xl overflow-hidden flex flex-col justify-between transition-all">
-                  <div className="bg-[#0B25B7] px-6 py-3.5 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Target size={20} className="text-yellow-300" />
-                      <span className="font-black text-base uppercase tracking-wider text-white">Visi Utama</span>
+                <motion.div
+                  whileHover={{ y: -5 }}
+                  className="bg-white text-slate-900 border-2 border-slate-200 hover:border-[#0B25B7] rounded-[32px] shadow-2xl overflow-hidden flex flex-col justify-between transition-all"
+                >
+                  <div className="bg-gradient-to-r from-[#0B25B7] to-indigo-800 px-7 py-4 flex items-center justify-between">
+                    <div className="flex items-center gap-2.5">
+                      <Target size={22} className="text-yellow-300" />
+                      <span className="font-black text-lg uppercase tracking-wider text-white">Visi Utama</span>
                     </div>
                     <div className="flex gap-2">
                       <div className="w-3 h-3 bg-red-400 rounded-full" />
@@ -454,26 +577,29 @@ function About() {
                     </div>
                   </div>
 
-                  <div className="p-8 md:p-10">
-                    <span className="text-xs font-black text-[#0B25B7] uppercase tracking-widest bg-blue-50 border border-blue-200 px-3 py-1 rounded-md inline-block mb-4">
-                      LANDASAN IMPIAN
+                  <div className="p-8 md:p-10 space-y-4">
+                    <span className="text-xs font-black text-[#0B25B7] uppercase tracking-widest bg-blue-50 border border-blue-200 px-3.5 py-1.5 rounded-lg inline-block">
+                      LANDASAN IMPIAN ORGANISASI
                     </span>
-                    <p className="text-lg md:text-2xl leading-relaxed font-bold text-slate-800">
+                    <p className="text-xl md:text-2xl leading-relaxed font-bold text-slate-800">
                       &quot;Terwujudnya HIMAMI sebagai organisasi yang berintegritas, berkualitas, dan progresif dalam membentuk mahasiswa Manajemen Informatika yang solid, partisipatif, serta berlandaskan pada nilai-nilai kekeluargaan dan keislaman.&quot;
                     </p>
                   </div>
 
                   <div className="px-8 pb-6 text-right">
-                    <span className="text-5xl md:text-6xl font-black text-slate-100 uppercase select-none">VISI</span>
+                    <span className="text-6xl font-black text-slate-100 uppercase select-none">VISI</span>
                   </div>
-                </div>
+                </motion.div>
 
                 {/* MISI CARD */}
-                <div className="bg-white text-slate-900 border-2 border-slate-200 hover:border-[#0B25B7] rounded-3xl shadow-xl overflow-hidden flex flex-col justify-between transition-all">
-                  <div className="bg-[#0B25B7] px-6 py-3.5 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Compass size={20} className="text-yellow-300" />
-                      <span className="font-black text-base uppercase tracking-wider text-white">Misi Organisasi</span>
+                <motion.div
+                  whileHover={{ y: -5 }}
+                  className="bg-white text-slate-900 border-2 border-slate-200 hover:border-[#0B25B7] rounded-[32px] shadow-2xl overflow-hidden flex flex-col justify-between transition-all"
+                >
+                  <div className="bg-gradient-to-r from-[#0B25B7] to-indigo-800 px-7 py-4 flex items-center justify-between">
+                    <div className="flex items-center gap-2.5">
+                      <Compass size={22} className="text-yellow-300" />
+                      <span className="font-black text-lg uppercase tracking-wider text-white">Misi Organisasi</span>
                     </div>
                     <div className="flex gap-2">
                       <div className="w-3 h-3 bg-red-400 rounded-full" />
@@ -489,7 +615,7 @@ function About() {
                       "Menjalin sinergi kekeluargaan, jejaring alumni, dan kerja sama harmonis dengan ekosistem luar.",
                     ].map((misiText, idx) => (
                       <div key={idx} className="flex gap-4 items-start bg-slate-50 p-4 border border-slate-200 rounded-2xl shadow-sm hover:border-blue-300 transition-all">
-                        <span className="bg-[#0B25B7] text-white text-sm font-black px-3 py-1 rounded-lg shrink-0 shadow-md">
+                        <span className="bg-[#0B25B7] text-white text-sm font-black px-3.5 py-1 rounded-xl shrink-0 shadow-md">
                           0{idx + 1}
                         </span>
                         <p className="text-base font-bold text-slate-800 leading-snug">
@@ -500,9 +626,9 @@ function About() {
                   </div>
 
                   <div className="px-8 pb-4 text-right">
-                    <span className="text-5xl md:text-6xl font-black text-slate-100 uppercase select-none">MISI</span>
+                    <span className="text-6xl font-black text-slate-100 uppercase select-none">MISI</span>
                   </div>
-                </div>
+                </motion.div>
               </div>
 
               {/* NILAI UTAMA ORGANISASI */}
@@ -515,11 +641,11 @@ function About() {
                   {values.map((val, idx) => (
                     <motion.div
                       key={idx}
-                      whileHover={{ scale: 1.03, y: -4 }}
-                      className="bg-white text-slate-900 border-2 border-slate-200 hover:border-[#0B25B7] p-6 rounded-2xl shadow-xl flex flex-col justify-between transition-all"
+                      whileHover={{ scale: 1.03, y: -5 }}
+                      className="bg-white text-slate-900 border-2 border-slate-200 hover:border-[#0B25B7] p-7 rounded-3xl shadow-xl flex flex-col justify-between transition-all"
                     >
                       <div>
-                        <div className="w-12 h-12 bg-blue-50 border border-blue-200 text-[#0B25B7] rounded-xl flex items-center justify-center mb-4 font-black">
+                        <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-5 font-black border ${val.accentBg} shadow-md`}>
                           {val.icon}
                         </div>
                         <h4 className="text-lg font-black uppercase text-slate-900 mb-2">{val.title}</h4>
@@ -538,43 +664,44 @@ function About() {
           {activeTab === "adart" && (
             <motion.div
               key="adart"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
+              exit={{ opacity: 0, y: -25 }}
               transition={{ duration: 0.4 }}
               className="space-y-8"
             >
-              <div className="bg-white border-2 border-slate-200 rounded-3xl p-6 md:p-8 shadow-xl">
-                <div className="flex items-center gap-3 mb-6 border-b border-slate-200 pb-4">
-                  <div className="p-3 bg-blue-50 text-[#0B25B7] rounded-xl border border-blue-200">
-                    <BookOpen size={24} />
+              <div className="bg-white border-2 border-slate-200 rounded-[32px] p-6 md:p-10 shadow-2xl">
+                <div className="flex items-center gap-4 mb-8 border-b border-slate-200 pb-5">
+                  <div className="p-3.5 bg-blue-50 text-[#0B25B7] rounded-2xl border border-blue-200 shadow-sm">
+                    <BookOpen size={28} />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-black uppercase text-slate-900">
+                    <h3 className="text-2xl md:text-3xl font-black uppercase text-slate-900">
                       Anggaran Dasar & Anggaran Rumah Tangga (AD/ART)
                     </h3>
-                    <p className="text-sm font-semibold text-slate-600">
-                      Pedoman Resmi Konstitusi & Tata Kelola Organisasi HIMAMI UNAS PASIM
+                    <p className="text-sm font-semibold text-slate-600 mt-0.5">
+                      Pedoman Resmi Konstitusi & Governance HIMAMI UNAS PASIM Bandung
                     </p>
                   </div>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6">
                   {adartData.map((bab, index) => (
-                    <div
+                    <motion.div
                       key={index}
-                      className="bg-slate-50 border-2 border-slate-200 rounded-2xl p-6 hover:border-[#0B25B7] transition-all space-y-4 shadow-sm"
+                      whileHover={{ y: -4 }}
+                      className="bg-slate-50 border-2 border-slate-200 rounded-3xl p-6 hover:border-[#0B25B7] transition-all space-y-5 shadow-md"
                     >
                       <div className="flex items-center justify-between border-b border-slate-200 pb-3">
-                        <span className="bg-[#0B25B7] text-white font-black text-xs px-3 py-1 rounded-md uppercase tracking-wider">
+                        <span className="bg-[#0B25B7] text-white font-black text-xs px-3.5 py-1.5 rounded-lg uppercase tracking-wider shadow-sm">
                           {bab.bab}
                         </span>
-                        <span className="text-xs font-black text-slate-400 uppercase">
-                          DOKUMEN RESMI
+                        <span className="text-xs font-black text-slate-400 uppercase tracking-widest">
+                          PASAL RESMI
                         </span>
                       </div>
 
-                      <h4 className="text-lg font-black text-slate-900 uppercase leading-snug">
+                      <h4 className="text-xl font-black text-slate-900 uppercase leading-snug">
                         {bab.title}
                       </h4>
 
@@ -582,10 +709,10 @@ function About() {
                         {bab.pasalList.map((pasal, pIdx) => (
                           <div
                             key={pIdx}
-                            className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-2"
+                            className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2.5"
                           >
                             <div className="flex items-center gap-2">
-                              <CheckCircle2 size={16} className="text-[#0B25B7]" />
+                              <CheckCircle2 size={18} className="text-[#0B25B7]" />
                               <span className="font-extrabold text-sm text-[#0B25B7] uppercase">
                                 {pasal.pasal} - {pasal.subtitle}
                               </span>
@@ -596,11 +723,11 @@ function About() {
                             </p>
 
                             {pasal.items && (
-                              <div className="pl-6 space-y-1.5 pt-1">
+                              <div className="pl-6 space-y-2 pt-1">
                                 {pasal.items.map((it, iIdx) => (
                                   <div
                                     key={iIdx}
-                                    className="flex items-center gap-2 text-xs font-extrabold text-slate-800 bg-blue-50/60 p-2 rounded-lg border border-blue-100"
+                                    className="flex items-center gap-2 text-xs font-extrabold text-slate-800 bg-blue-50/70 p-2.5 rounded-xl border border-blue-100"
                                   >
                                     <ChevronRight size={14} className="text-[#0B25B7]" />
                                     <span>
@@ -613,7 +740,7 @@ function About() {
                           </div>
                         ))}
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
@@ -624,112 +751,131 @@ function About() {
           {activeTab === "lambang" && (
             <motion.div
               key="lambang"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
+              exit={{ opacity: 0, y: -25 }}
               transition={{ duration: 0.4 }}
               className="space-y-12"
             >
               {/* BAB V PASAL 11: LAMBANG & MAKNA */}
-              <div className="bg-white border-2 border-slate-200 rounded-3xl p-6 md:p-10 shadow-xl space-y-8">
-                <div className="text-center max-w-xl mx-auto space-y-2 border-b border-slate-200 pb-6">
-                  <span className="bg-[#0B25B7] text-white px-3 py-1 rounded-md text-xs font-black uppercase tracking-wider">
+              <div className="bg-white border-2 border-slate-200 rounded-[32px] p-6 md:p-10 shadow-2xl space-y-10">
+                <div className="text-center max-w-2xl mx-auto space-y-3 border-b border-slate-200 pb-6">
+                  <span className="bg-[#0B25B7] text-white px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider shadow-sm">
                     BAB V • PASAL 11
                   </span>
-                  <h3 className="text-3xl font-black uppercase text-slate-900">
+                  <h3 className="text-3xl md:text-4xl font-black uppercase text-slate-900">
                     LAMBANG & MAKNA SIMBOL HIMAMI
                   </h3>
                   <p className="text-sm font-semibold text-slate-600">
-                    Filosofi mendalam dibalik setiap kontur dan garis lambang HIMAMI UNAS PASIM
+                    Filosofi mendalam dibalik setiap bentuk, kontur, dan skema warna lambang HIMAMI UNAS PASIM
                   </p>
                 </div>
 
                 {/* LOGO SHOWCASE + MAKNA BENTUK */}
-                <div className="grid lg:grid-cols-12 gap-8 items-center">
+                <div className="grid lg:grid-cols-12 gap-10 items-center">
                   {/* LOGO DISPLAY */}
-                  <div className="lg:col-span-5 bg-gradient-to-b from-blue-50 to-slate-100 p-8 rounded-3xl border-2 border-blue-200 text-center shadow-md flex flex-col items-center justify-center">
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    className="lg:col-span-5 bg-gradient-to-b from-blue-50 to-slate-100 p-8 rounded-[28px] border-2 border-blue-200 text-center shadow-lg flex flex-col items-center justify-center relative cursor-pointer"
+                    onClick={() => setSelectedImage(logo)}
+                  >
+                    <div className="absolute top-4 right-4 bg-white/80 backdrop-blur-md p-2 rounded-full shadow-md text-slate-700">
+                      <Eye size={16} />
+                    </div>
+
                     <img
                       src={logo}
                       alt="Lambang Resmi HIMAMI"
-                      className="w-56 h-auto drop-shadow-2xl hover:scale-105 transition-transform duration-300"
+                      className="w-60 h-auto drop-shadow-2xl hover:scale-105 transition-transform duration-300"
                     />
-                    <div className="mt-6 bg-white border border-blue-200 px-4 py-2 rounded-xl text-center shadow-sm">
+
+                    <div className="mt-6 bg-white border border-blue-200 px-5 py-2.5 rounded-2xl text-center shadow-sm">
                       <span className="font-black text-sm text-[#0B25B7] uppercase block">
                         LAMBANG RESMI HIMAMI
                       </span>
                       <span className="text-[11px] font-bold text-slate-500">
-                        Ditentukan & Disahkan dalam AD/ART
+                        Disahkan dalam AD/ART HIMAMI UNAS PASIM
                       </span>
                     </div>
-                  </div>
+                  </motion.div>
 
                   {/* MAKNA ELEMENT LIST */}
                   <div className="lg:col-span-7 space-y-4">
-                    <h4 className="text-lg font-black uppercase text-slate-900 border-l-4 border-[#0B25B7] pl-3">
+                    <h4 className="text-xl font-black uppercase text-slate-900 border-l-4 border-[#0B25B7] pl-3">
                       Makna Formasi / Elemen Lambang
                     </h4>
 
                     <div className="space-y-3">
                       {logoElements.map((el, idx) => (
-                        <div
+                        <motion.div
                           key={idx}
-                          className="bg-slate-50 hover:bg-blue-50/50 p-4 rounded-2xl border border-slate-200 hover:border-blue-300 transition-all flex gap-4 items-start shadow-sm"
+                          whileHover={{ x: 6 }}
+                          className="bg-slate-50 hover:bg-blue-50/50 p-4 rounded-2xl border border-slate-200 hover:border-blue-300 transition-all flex gap-4 items-start shadow-xs"
                         >
-                          <div className="p-2.5 bg-white border border-slate-200 rounded-xl shrink-0 shadow-xs">
+                          <div className="p-3 bg-white border border-slate-200 rounded-xl shrink-0 shadow-xs">
                             {el.icon}
                           </div>
                           <div>
-                            <h5 className="font-black text-base text-slate-900 uppercase">
-                              {el.title}
-                            </h5>
-                            <p className="text-sm font-semibold text-slate-600 leading-relaxed mt-0.5">
+                            <div className="flex items-center gap-2">
+                              <h5 className="font-black text-base text-slate-900 uppercase">
+                                {el.title}
+                              </h5>
+                              <span className="text-[10px] font-black text-[#0B25B7] bg-blue-50 px-2.5 py-0.5 rounded-md border border-blue-200 uppercase">
+                                {el.badge}
+                              </span>
+                            </div>
+                            <p className="text-sm font-semibold text-slate-600 leading-relaxed mt-1">
                               {el.desc}
                             </p>
                           </div>
-                        </div>
+                        </motion.div>
                       ))}
                     </div>
                   </div>
                 </div>
 
                 {/* MAKNA WARNA */}
-                <div className="pt-6 border-t border-slate-200">
-                  <h4 className="text-xl font-black uppercase text-slate-900 mb-6 text-center">
+                <div className="pt-8 border-t border-slate-200">
+                  <h4 className="text-2xl font-black uppercase text-slate-900 mb-6 text-center">
                     Makna Warna Lambang HIMAMI
                   </h4>
 
                   <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
                     {colorMeanings.map((color, idx) => (
-                      <div
+                      <motion.div
                         key={idx}
-                        className="bg-slate-50 p-5 rounded-2xl border-2 border-slate-200 shadow-md flex flex-col justify-between hover:scale-105 transition-transform"
+                        whileHover={{ scale: 1.05, y: -4 }}
+                        className="bg-slate-50 p-5 rounded-2xl border-2 border-slate-200 shadow-md flex flex-col justify-between space-y-3"
                       >
-                        <div>
-                          <div className="flex items-center gap-3 mb-3">
-                            <span
-                              className={`w-6 h-6 rounded-full shadow-inner ${color.bgClass}`}
-                            />
-                            <span className="font-black text-sm uppercase text-slate-900">
+                        <div className="flex items-center gap-3">
+                          <span
+                            className={`w-7 h-7 rounded-full shadow-md ${color.bgClass}`}
+                          />
+                          <div>
+                            <span className="font-black text-sm uppercase text-slate-900 block">
                               {color.name}
                             </span>
+                            <span className="text-[10px] font-bold text-slate-400 uppercase">
+                              {color.hex}
+                            </span>
                           </div>
-                          <p className="text-xs font-semibold text-slate-600 leading-relaxed">
-                            {color.desc}
-                          </p>
                         </div>
-                      </div>
+                        <p className="text-xs font-semibold text-slate-600 leading-relaxed">
+                          {color.desc}
+                        </p>
+                      </motion.div>
                     ))}
                   </div>
                 </div>
               </div>
 
               {/* BAB V PASAL 12: ATRIBUT & BENDERA */}
-              <div className="bg-white border-2 border-slate-200 rounded-3xl p-6 md:p-10 shadow-xl space-y-8">
-                <div className="text-center max-w-xl mx-auto space-y-2 border-b border-slate-200 pb-6">
-                  <span className="bg-[#0B25B7] text-white px-3 py-1 rounded-md text-xs font-black uppercase tracking-wider">
+              <div className="bg-white border-2 border-slate-200 rounded-[32px] p-6 md:p-10 shadow-2xl space-y-10">
+                <div className="text-center max-w-2xl mx-auto space-y-3 border-b border-slate-200 pb-6">
+                  <span className="bg-[#0B25B7] text-white px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider shadow-sm">
                     BAB V • PASAL 12
                   </span>
-                  <h3 className="text-3xl font-black uppercase text-slate-900">
+                  <h3 className="text-3xl md:text-4xl font-black uppercase text-slate-900">
                     ATRIBUT & BENDERA HIMAMI
                   </h3>
                   <p className="text-sm font-semibold text-slate-600">
@@ -739,13 +885,23 @@ function About() {
 
                 <div className="grid lg:grid-cols-2 gap-8">
                   {/* ATRIBUT / PDH CARD */}
-                  <div className="bg-slate-50 border-2 border-slate-200 rounded-3xl p-6 shadow-md flex flex-col justify-between space-y-6">
+                  <motion.div
+                    whileHover={{ y: -5 }}
+                    className="bg-slate-50 border-2 border-slate-200 rounded-3xl p-7 shadow-lg flex flex-col justify-between space-y-6 hover:border-[#0B25B7] transition-all"
+                  >
                     <div className="space-y-3">
-                      <div className="flex items-center gap-2">
-                        <Shirt className="text-[#0B25B7]" size={24} />
-                        <h4 className="text-xl font-black text-slate-900 uppercase">
-                          ATRIBUT - PAKAIAN DINAS HARIAN (PDH)
-                        </h4>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2.5">
+                          <div className="p-2 bg-[#0B25B7] text-white rounded-xl shadow-md">
+                            <Shirt size={22} />
+                          </div>
+                          <h4 className="text-xl font-black text-slate-900 uppercase">
+                            ATRIBUT (PDH HIMAMI)
+                          </h4>
+                        </div>
+                        <span className="text-[10px] font-black uppercase bg-blue-100 text-[#0B25B7] px-3 py-1 rounded-full border border-blue-300">
+                          Identitas Pengurus
+                        </span>
                       </div>
 
                       <p className="text-sm font-semibold text-slate-600 leading-relaxed">
@@ -754,19 +910,24 @@ function About() {
                     </div>
 
                     {/* PDH IMAGE */}
-                    <div className="bg-white p-4 rounded-2xl border-2 border-slate-200 shadow-sm text-center">
+                    <div
+                      onClick={() => setSelectedImage(pdhImg)}
+                      className="bg-white p-5 rounded-2xl border-2 border-slate-200 shadow-inner text-center relative cursor-pointer overflow-hidden group/img"
+                    >
                       <img
                         src={pdhImg}
                         alt="Gambar PDH HIMAMI"
-                        className="w-full h-auto max-h-80 object-contain mx-auto rounded-xl hover:scale-105 transition-transform duration-300"
+                        className="w-full h-auto max-h-80 object-contain mx-auto rounded-xl group-hover/img:scale-105 transition-transform duration-300"
                       />
-                      <span className="block mt-3 text-xs font-black text-[#0B25B7] uppercase">
-                        Gambar PDF / Desain PDH HIMAMI
-                      </span>
+                      <div className="absolute inset-0 bg-blue-900/20 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-xs">
+                        <span className="bg-white text-slate-900 font-black text-xs px-4 py-2 rounded-xl shadow-lg flex items-center gap-2">
+                          <Eye size={16} /> Perbesar Gambar
+                        </span>
+                      </div>
                     </div>
 
-                    <div className="text-left text-xs font-semibold text-slate-700 bg-white p-4 rounded-2xl border border-slate-200 space-y-1.5">
-                      <span className="font-black text-[#0B25B7] uppercase block mb-1">
+                    <div className="text-left text-xs font-semibold text-slate-700 bg-white p-4 rounded-2xl border border-slate-200 space-y-2">
+                      <span className="font-black text-[#0B25B7] uppercase block border-b border-slate-100 pb-1">
                         Spesifikasi Lengkap PDH:
                       </span>
                       <p>• <strong>Warna Utama:</strong> Krem Khaki dengan aksen Lis Abu-abu</p>
@@ -774,16 +935,26 @@ function About() {
                       <p>• <strong>Sisi Belakang:</strong> Bordir Teks HIMAMI UNAS PASIM</p>
                       <p>• <strong>Sisi Lengan:</strong> Bendera Indonesia (Kanan) & Logo HIMAMI (Kiri)</p>
                     </div>
-                  </div>
+                  </motion.div>
 
                   {/* BENDERA CARD */}
-                  <div className="bg-slate-50 border-2 border-slate-200 rounded-3xl p-6 shadow-md flex flex-col justify-between space-y-6">
+                  <motion.div
+                    whileHover={{ y: -5 }}
+                    className="bg-slate-50 border-2 border-slate-200 rounded-3xl p-7 shadow-lg flex flex-col justify-between space-y-6 hover:border-[#0B25B7] transition-all"
+                  >
                     <div className="space-y-3">
-                      <div className="flex items-center gap-2">
-                        <Flag className="text-[#0B25B7]" size={24} />
-                        <h4 className="text-xl font-black text-slate-900 uppercase">
-                          BENDERA HIMAMI & MAKNANYA
-                        </h4>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2.5">
+                          <div className="p-2 bg-[#0B25B7] text-white rounded-xl shadow-md">
+                            <Flag size={22} />
+                          </div>
+                          <h4 className="text-xl font-black text-slate-900 uppercase">
+                            BENDERA HIMAMI
+                          </h4>
+                        </div>
+                        <span className="text-[10px] font-black uppercase bg-gray-200 text-gray-900 px-3 py-1 rounded-full border border-gray-400">
+                          Panji Kebanggaan
+                        </span>
                       </div>
 
                       <p className="text-sm font-semibold text-slate-600 leading-relaxed">
@@ -792,15 +963,20 @@ function About() {
                     </div>
 
                     {/* BENDERA IMAGE */}
-                    <div className="bg-white p-4 rounded-2xl border-2 border-slate-200 shadow-sm text-center">
+                    <div
+                      onClick={() => setSelectedImage(benderaImg)}
+                      className="bg-white p-5 rounded-2xl border-2 border-slate-200 shadow-inner text-center relative cursor-pointer overflow-hidden group/img"
+                    >
                       <img
                         src={benderaImg}
                         alt="Gambar Bendera HIMAMI"
-                        className="w-full h-auto max-h-80 object-contain mx-auto rounded-xl hover:scale-105 transition-transform duration-300"
+                        className="w-full h-auto max-h-80 object-contain mx-auto rounded-xl group-hover/img:scale-105 transition-transform duration-300"
                       />
-                      <span className="block mt-3 text-xs font-black text-[#0B25B7] uppercase">
-                        BENDERA HIMAMI
-                      </span>
+                      <div className="absolute inset-0 bg-blue-900/20 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-xs">
+                        <span className="bg-white text-slate-900 font-black text-xs px-4 py-2 rounded-xl shadow-lg flex items-center gap-2">
+                          <Eye size={16} /> Perbesar Gambar
+                        </span>
+                      </div>
                     </div>
 
                     {/* MAKNA BENDERA */}
@@ -808,20 +984,51 @@ function About() {
                       <span className="font-black text-sm text-[#0B25B7] uppercase block border-b border-slate-100 pb-1">
                         Makna Warna Dasar Bendera:
                       </span>
-                      <div className="flex items-start gap-3">
+                      <div className="flex items-start gap-3 pt-1">
                         <span className="w-5 h-5 bg-gray-500 rounded-md shrink-0 mt-0.5 shadow-xs" />
                         <p className="text-sm font-bold text-slate-800 leading-snug">
                           <strong className="text-slate-900">1. Warna Dasar Abu-abu:</strong> Memiliki arti Keseriusan, Kestabilan, Kemandirian, dan Tanggung Jawab.
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
+
+      {/* LIGHTBOX MODAL FOR IMAGE PREVIEW */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedImage(null)}
+            className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md p-4 flex items-center justify-center cursor-pointer"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative max-w-4xl max-h-[90vh] bg-white p-4 rounded-3xl border-4 border-[#0B25B7] shadow-2xl overflow-hidden"
+            >
+              <img
+                src={selectedImage}
+                alt="Preview Detail"
+                className="w-full h-auto max-h-[80vh] object-contain rounded-2xl"
+              />
+              <div className="mt-3 text-center">
+                <span className="text-xs font-black uppercase text-[#0B25B7]">
+                  Klik di mana saja untuk menutup preview
+                </span>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
