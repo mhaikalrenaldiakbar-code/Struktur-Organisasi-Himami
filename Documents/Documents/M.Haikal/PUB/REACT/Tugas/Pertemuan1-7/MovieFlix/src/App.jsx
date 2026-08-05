@@ -246,7 +246,7 @@ const initialMovies = [
     showing: true,
     favorite: true,
     poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS51LdVez5SDLfU-1NdQiYmFV2edBwI06Pv_G2SYpA5_5QbNSgQTI9zZDy-rM9lzEdAhMJ8sa3Tc4niTCXlI2gCWinHKxYp5GEH8qC7kO20yQ&s=10",
-    description: "Bertahun-tahun setelah kematian Maximus, Lucius harus memasuki Colosseum untuk mengembalikan kejayaan Roma."
+    description: "Bertahun-tahun setelah kematian Maximus, Lucius harus memasuki Colosseum untuk mengembalikan kehancuran Roma."
   }
 ];
 
@@ -259,7 +259,6 @@ export default function App() {
   const [activeTab, setActiveTab] = useState('all');
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [isDarkMode, setIsDarkMode] = useState(true);
-  const [layoutMode, setLayoutMode] = useState('scroll');
 
   const handleToggleTheme = () => {
     setIsDarkMode((prev) => !prev);
@@ -343,8 +342,8 @@ export default function App() {
   return (
     <div className={`min-h-screen flex flex-col font-sans transition-colors duration-300 ${
       isDarkMode 
-        ? 'bg-slate-950 text-slate-100 selection:bg-red-600 selection:text-white' 
-        : 'bg-slate-50 text-slate-900 selection:bg-red-600 selection:text-white'
+        ? 'bg-ambient-dark text-slate-100' 
+        : 'bg-ambient-light text-slate-900'
     }`}>
       <Header 
         activeTab={activeTab} 
@@ -383,10 +382,10 @@ export default function App() {
         />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between mt-8 mb-2">
-          <h3 className={`text-lg font-bold flex items-center gap-2 ${isDarkMode ? 'text-slate-200' : 'text-slate-800'}`}>
-            <span>Daftar Film Trending</span>
-            <span className={`text-xs px-2.5 py-0.5 rounded-full font-normal ${
-              isDarkMode ? 'bg-slate-800 text-slate-400' : 'bg-slate-200 text-slate-600'
+          <h3 className={`text-lg font-extrabold flex items-center gap-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+            <span className="bg-gradient-to-r from-red-500 to-rose-500 bg-clip-text text-transparent">Daftar Film Trending</span>
+            <span className={`text-xs px-2.5 py-0.5 rounded-full font-semibold border ${
+              isDarkMode ? 'bg-slate-900/90 text-slate-400 border-slate-800' : 'bg-white text-slate-600 border-slate-200 shadow-xs'
             }`}>
               {filteredMovies.length} dari {totalMovies} film
             </span>
@@ -399,8 +398,6 @@ export default function App() {
           onResetFilters={handleResetFilters}
           onSelectMovie={setSelectedMovie}
           isDarkMode={isDarkMode}
-          layoutMode={layoutMode}
-          onLayoutModeChange={setLayoutMode}
         />
       </main>
 
