@@ -1,0 +1,8 @@
+{
+  "name": "pertemuan1-7",
+  "private": true,
+  "scripts": {
+    "dev": "npm run dev --prefix MovieFlix",
+    "build": "npm run build --prefix MovieFlix"
+  }
+}
