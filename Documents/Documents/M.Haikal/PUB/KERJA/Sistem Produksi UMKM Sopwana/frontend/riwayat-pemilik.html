@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riwayat Hasil Kerja - Pemilik</title>
+  <link rel="stylesheet" href="css/riwayat.css">
+</head>
+<body>
+  <main class="container">
+    <div class="header">
+      <div>
+        <h1>Riwayat Hasil Kerja Pekerja</h1>
+        <p>Menampilkan data hasil kemas, validasi, upah, dan status pembayaran.</p>
+      </div>
+      <button onclick="loadRiwayatKerja()">Refresh</button>
+    </div>
+
+    <section class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>Nama Pekerja</th>
+            <th>Tanggal</th>
+            <th>Bal Diambil</th>
+            <th>Hasil Ikat</th>
+            <th>Validasi</th>
+            <th>Total Upah</th>
+            <th>Status Bayar</th>
+            <th>Catatan</th>
+          </tr>
+        </thead>
+        <tbody id="tabelRiwayatKerja">
+          <tr>
+            <td colspan="8" class="center">Memuat data...</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="js/riwayat-pemilik.js"></script>
+</body>
+</html>

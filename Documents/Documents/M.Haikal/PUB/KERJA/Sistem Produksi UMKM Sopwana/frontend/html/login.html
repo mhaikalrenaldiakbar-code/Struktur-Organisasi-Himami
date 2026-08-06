@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | Sopwana Production & Payroll</title>
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body class="new-login-body">
+
+    <main class="new-login-container">
+
+        <section class="login-left">
+            <a class="brand login-brand" href="../html/index.html">
+                <span class="brand-mark">S</span>
+                <span>
+                    <b>Sopwana</b>
+                    <small>Production & Payroll</small>
+                </span>
+            </a>
+
+            <div class="login-copy">
+                <span class="eyebrow">Login Portal</span>
+                <h1>Selamat Datang di Portal Sopwana</h1>
+                <p>
+                    Gunakan akun pemilik atau pekerja untuk masuk ke dashboard informasi produksi,
+                    stok gudang, hasil kerja, penjualan, dan penggajian.
+                </p>
+            </div>
+
+            <div class="login-info-list">
+                <div>
+                    <b>📦</b>
+                    <span>Monitoring stok bal & ikat realtime</span>
+                </div>
+                <div>
+                    <b>👷</b>
+                    <span>Lapor & validasi hasil kerja pekerja</span>
+                </div>
+                <div>
+                    <b>💰</b>
+                    <span>Rekapitulasi penggajian mingguan</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="login-right">
+            <div class="login-card">
+                <h2>Masuk Sistem</h2>
+                <p>Silakan masukkan kredensial akun Anda.</p>
+
+                <form id="loginForm">
+                    <div>
+                        <label for="username">Username</label>
+                        <input id="username" type="text" placeholder="Masukkan username Anda" required />
+                    </div>
+
+                    <div>
+                        <label for="password">Password</label>
+                        <input id="password" type="password" placeholder="Masukkan password Anda" required />
+                    </div>
+
+                    <button class="btn btn-primary full" type="submit">
+                        🔑 Login Sekarang
+                    </button>
+                </form>
+
+                <div id="loginMessage" class="toast hidden"></div>
+
+                <a class="back-link" href="../html/index.html">
+                    ← Kembali ke Halaman Utama
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/auth.js"></script>
+
+</body>
+
+</html>

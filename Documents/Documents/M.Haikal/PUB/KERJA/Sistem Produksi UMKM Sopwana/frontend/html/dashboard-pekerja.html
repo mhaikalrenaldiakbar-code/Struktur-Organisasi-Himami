@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Pekerja | Sopwana Production & Payroll</title>
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body class="app-body">
+
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar">
+        <a class="brand" href="../html/dashboard-pekerja.html">
+            <span class="brand-mark">S</span>
+            <span>
+                <b>Sopwana</b>
+                <small>Production & Payroll</small>
+            </span>
+        </a>
+
+        <nav class="feature-menu">
+            <button class="feature-btn active" onclick="showInfo('info-worker-dashboard', this)">
+                <span>🏠</span>
+                <div>
+                    <b>Ringkasan</b>
+                    <small>Informasi utama</small>
+                </div>
+            </button>
+
+            <button class="feature-btn" onclick="showInfo('info-ambil', this)">
+                <span>📦</span>
+                <div>
+                    <b>Ambil Barang</b>
+                    <small>Input pengambilan</small>
+                </div>
+            </button>
+
+            <button class="feature-btn" onclick="showInfo('info-kemas', this)">
+                <span>🧺</span>
+                <div>
+                    <b>Hasil Kemas</b>
+                    <small>Lapor hasil kerja</small>
+                </div>
+            </button>
+
+            <button class="feature-btn" onclick="showInfo('info-riwayat', this)">
+                <span>📋</span>
+                <div>
+                    <b>Riwayat Kerja</b>
+                    <small>Data kerja saya</small>
+                </div>
+            </button>
+
+            <button class="feature-btn" onclick="showInfo('info-upah', this)">
+                <span>💰</span>
+                <div>
+                    <b>Riwayat Upah</b>
+                    <small>Minggu berjalan</small>
+                </div>
+            </button>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="profile-chip">
+                <div class="profile-avatar">W</div>
+                <div>
+                    <span id="profileName">Pekerja</span>
+                    <small id="profileRole">ROLE_PEKERJA</small>
+                </div>
+            </div>
+            <button class="btn-sidebar-logout" onclick="logout()">
+                <span>🚪</span> Logout
+            </button>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="main-content">
+        <!-- TOPBAR HEADER -->
+        <header class="topbar">
+            <button class="topbar-mobile-btn" onclick="toggleMobileSidebar()" aria-label="Menu">☰</button>
+            <div class="topbar-title">
+                <h1>Dashboard Pekerja</h1>
+                <p>Pusat informasi pengambilan barang, hasil kemas, riwayat kerja, dan upah.</p>
+            </div>
+            <div class="topbar-actions">
+                <div class="topbar-user">
+                    <span>Menu Pekerja</span>
+                    <small>Online</small>
+                </div>
+            </div>
+        </header>
+
+        <!-- KPI SUMMARY CARDS -->
+        <section class="summary-grid three">
+            <article class="summary-card">
+                <div>
+                    <span>Stok Bal Tersedia</span>
+                    <b id="stokBal">0</b>
+                    <small>Stok bal di gudang</small>
+                </div>
+                <div class="card-icon">📦</div>
+            </article>
+
+            <article class="summary-card">
+                <div>
+                    <span>ID Pekerja Saya</span>
+                    <b id="idPekerjaLabel">-</b>
+                    <small>Identitas transaksi</small>
+                </div>
+                <div class="card-icon">🪪</div>
+            </article>
+        </section>
+
+        <!-- TAB PANELS -->
+        <section class="info-container">
+
+            <!-- TAB 1: RINGKASAN -->
+            <div id="info-worker-dashboard" class="info-panel active">
+                <div class="panel-head">
+                    <div>
+                        <h2>Ringkasan Pekerja</h2>
+                        <p>Dashboard ini digunakan pekerja untuk melihat informasi pekerjaan dan upah.</p>
+                    </div>
+
+                    <button class="btn btn-soft" onclick="loadDashboardPekerja()">
+                        ⚡ Refresh Data
+                    </button>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-box">
+                        <h3>📦 Pengambilan Barang</h3>
+                        <p>Pekerja mengambil bal dari gudang. Pengambilan ini akan mengurangi stok bal.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>🧺 Hasil Kemas</h3>
+                        <p>Hasil kemas dilaporkan oleh pekerja dan menunggu validasi dari pemilik.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>💰 Perhitungan Upah</h3>
+                        <p>Upah dihitung dari hasil kerja VALID pada minggu berjalan WIB (Rp1.000 / ikat).</p>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <div id="manualPekerjaIdBox" class="inline-form hidden">
+                    <input id="pekerjaIdInput" type="number" min="1" placeholder="ID Pekerja otomatis dari akun login" />
+                    <button class="btn btn-primary" onclick="savePekerjaId()" type="button">
+                        Simpan ID Pekerja
+                    </button>
+                </div>
+            </div>
+
+            <!-- TAB 2: AMBIL BARANG -->
+            <div id="info-ambil" class="info-panel">
+                <div class="panel-head">
+                    <div>
+                        <h2>Pengambilan Barang Gudang</h2>
+                        <p>Input jumlah bal dan bahan kemas yang diambil dari gudang.</p>
+                    </div>
+                </div>
+
+                <form id="formAmbil" class="form-grid single">
+                    <h3>📦 Form Pengambilan Bal</h3>
+                    <input id="ambilJumlahBal" type="number" min="1" placeholder="Jumlah bal diambil" required />
+                    <input id="ambilPlastik" type="number" min="0" placeholder="Jumlah plastik" />
+                    <input id="ambilLabel" type="number" min="0" placeholder="Jumlah label" />
+                    <input id="ambilRafia" type="number" min="0" placeholder="Jumlah rafia" />
+                    <button class="btn btn-primary" type="submit">💾 Simpan Pengambilan</button>
+                </form>
+
+                <div class="divider"></div>
+
+                <div class="status-card">
+                    <span>ID Pengambilan Terakhir</span>
+                    <b id="lastPengambilanBox">-</b>
+                    <p>ID ini digunakan untuk mencocokkan laporan hasil kemas dengan barang yang sudah diambil.</p>
+                </div>
+            </div>
+
+            <!-- TAB 3: HASIL KEMAS -->
+            <div id="info-kemas" class="info-panel">
+                <div class="panel-head">
+                    <div>
+                        <h2>Lapor Hasil Kemas</h2>
+                        <p>Kirimkan laporan hasil pengemasan untuk dikonfirmasi pemilik.</p>
+                    </div>
+
+                    <button class="btn btn-soft" onclick="loadRiwayatKerjaSaya()">
+                        ⚡ Refresh
+                    </button>
+                </div>
+
+                <form id="formKemas" class="form-grid single">
+                    <h3>🧺 Form Lapor Hasil Kemas</h3>
+                    <input id="kemasPengambilanId" type="number" min="1" placeholder="ID Pengambilan (lihat menu Ambil Barang)" required />
+                    <input id="kemasJumlahIkat" type="number" min="1" placeholder="Jumlah ikat harus pas: jumlah bal × 10" required />
+                    <small class="helper-text">💡 Contoh: jika mengambil 5 bal, maka hasil kemas wajib 50 ikat. Jika kurang/lebih, sistem menolak input.</small>
+                    <input id="kemasCatatan" placeholder="Catatan hasil kemas (opsional)" />
+                    <button class="btn btn-primary" type="submit">🚀 Kirim Hasil Kemas</button>
+                </form>
+
+                <p class="helper-text">
+                    Upah dihitung otomatis oleh sistem berdasarkan hasil kemas yang divalidasi VALID oleh pemilik.
+                </p>
+
+                <div class="divider"></div>
+
+                <div class="info-grid">
+                    <div class="info-box">
+                        <h3>Status Pending</h3>
+                        <p>Laporan hasil kemas sudah dikirim, tetapi belum divalidasi oleh pemilik.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>Status Valid</h3>
+                        <p>Hasil kemas diterima. Data ini akan masuk ke stok ikat & dihitung sebagai upah.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>Status Ditolak</h3>
+                        <p>Hasil kemas tidak sesuai dan tidak masuk perhitungan upah.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: RIWAYAT KERJA -->
+            <div id="info-riwayat" class="info-panel">
+                <div class="panel-head">
+                    <div>
+                        <h2>Riwayat Kerja Saya</h2>
+                        <p>Menampilkan hasil kerja harian pekerja.</p>
+                    </div>
+
+                    <button class="btn btn-soft" onclick="loadRiwayatKerjaSaya()">
+                        ⚡ Refresh Riwayat
+                    </button>
+                </div>
+
+                <div id="weeklyRiwayatSaya" class="weekly-stack">
+                    <div class="weekly-empty">Klik refresh untuk memuat riwayat kerja mingguan.</div>
+                </div>
+
+                <div class="table-wrap hidden-compat">
+                    <table>
+                        <tbody id="tblRiwayatSaya"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TAB 5: RIWAYAT UPAH -->
+            <div id="info-upah" class="info-panel">
+                <div class="panel-head">
+                    <div>
+                        <h2>Riwayat Upah Saya</h2>
+                        <p>Rekap upah per minggu berdasarkan hasil kerja VALID yang dikonfirmasi pemilik.</p>
+                    </div>
+
+                    <button class="btn btn-soft" onclick="loadRiwayatUpahSaya()">
+                        ⚡ Refresh Upah
+                    </button>
+                </div>
+
+                <div id="weeklyUpahSaya" class="weekly-stack">
+                    <div class="weekly-empty">Klik refresh untuk memuat riwayat upah mingguan.</div>
+                </div>
+
+                <div class="table-wrap hidden-compat">
+                    <table>
+                        <tbody id="tblUpahSaya"></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+        <div id="toast" class="toast hidden"></div>
+    </main>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/pekerja.js?v=id-pekerja-auto-20260621"></script>
+    <script src="../js/ui-info.js"></script>
+</body>
+
+</html>

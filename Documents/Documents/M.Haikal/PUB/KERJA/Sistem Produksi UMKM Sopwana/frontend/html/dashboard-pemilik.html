@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Pemilik | Sopwana Production & Payroll</title>
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body class="app-body">
+
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar">
+        <a class="brand" href="../html/dashboard-pemilik.html">
+            <span class="brand-mark">S</span>
+            <span>
+                <b>Sopwana</b>
+                <small>Production & Payroll</small>
+            </span>
+        </a>
+
+        <nav class="feature-menu">
+            <button class="feature-btn active" onclick="showInfo('info-dashboard', this)">
+                <span>🏠</span>
+                <div>
+                    <b>Ringkasan</b>
+                    <small>Informasi utama sistem</small>
+                </div>
+            </button>
+
+            <button class="feature-btn" onclick="showInfo('info-pekerja', this)">
+                <span>👷</span>
+                <div>
+                    <b>Pekerja</b>
+                    <small>Data pekerja Sopwana</small>
+                </div>
+            </button>
+
+            <button class="feature-btn" onclick="showInfo('info-produksi', this)">
+                <span>📦</span>
+                <div>
+                    <b>Produksi</b>
+                    <small>Informasi produksi bal</small>
+                </div>
+            </button>
+
+            <button class="feature-btn" onclick="showInfo('info-validasi', this)">
+                <span>✅</span>
+                <div>
+                    <b>Validasi</b>
+                    <small>Status hasil kemas</small>
+                </div>
+            </button>
+
+            <button class="feature-btn" onclick="showInfo('info-penjualan', this)">
+                <span>🛒</span>
+                <div>
+                    <b>Penjualan</b>
+                    <small>Riwayat stok keluar</small>
+                </div>
+            </button>
+
+            <button class="feature-btn" onclick="showInfo('info-gaji', this)">
+                <span>💰</span>
+                <div>
+                    <b>Penggajian</b>
+                    <small>Status upah pekerja</small>
+                </div>
+            </button>
+
+            <button class="feature-btn" onclick="showInfo('info-laporan', this)">
+                <span>📊</span>
+                <div>
+                    <b>Laporan</b>
+                    <small>Export Excel</small>
+                </div>
+            </button>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="profile-chip">
+                <div class="profile-avatar">P</div>
+                <div>
+                    <span id="profileName">Pemilik</span>
+                    <small id="profileRole">ROLE_PEMILIK</small>
+                </div>
+            </div>
+            <button class="btn-sidebar-logout" onclick="logout()">
+                <span>🚪</span> Logout
+            </button>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="main-content">
+        <!-- TOPBAR HEADER -->
+        <header class="topbar">
+            <button class="topbar-mobile-btn" onclick="toggleMobileSidebar()" aria-label="Menu">☰</button>
+            <div class="topbar-title">
+                <h1>Dashboard Pemilik</h1>
+                <p>Pusat informasi produksi, stok, pekerja, penjualan, dan penggajian Sopwana.</p>
+            </div>
+            <div class="topbar-actions">
+                <div class="topbar-user">
+                    <span>Pemilik Sopwana</span>
+                    <small>Online</small>
+                </div>
+            </div>
+        </header>
+
+        <!-- KPI SUMMARY CARDS -->
+        <section class="summary-grid">
+            <article class="summary-card">
+                <div>
+                    <span>Stok Bal</span>
+                    <b id="stokBal">0</b>
+                    <small>Total stok bal tersedia</small>
+                </div>
+                <div class="card-icon">📦</div>
+            </article>
+
+            <article class="summary-card">
+                <div>
+                    <span>Stok Ikat</span>
+                    <b id="stokIkat">0</b>
+                    <small>Total ikat siap jual</small>
+                </div>
+                <div class="card-icon">🧺</div>
+            </article>
+
+            <article class="summary-card">
+                <div>
+                    <span>Total Pekerja</span>
+                    <b id="totalPekerja">0</b>
+                    <small>Pekerja terdaftar</small>
+                </div>
+                <div class="card-icon">👷</div>
+            </article>
+
+            <article class="summary-card">
+                <div>
+                    <span>Gaji Pending</span>
+                    <b id="totalPending">0</b>
+                    <small>Belum dikonfirmasi bayar</small>
+                </div>
+                <div class="card-icon">💰</div>
+            </article>
+        </section>
+
+        <!-- TAB PANELS -->
+        <section class="info-container">
+
+            <!-- TAB 1: RINGKASAN -->
+            <div id="info-dashboard" class="info-panel active">
+                <div class="panel-head">
+                    <div>
+                        <h2>Ringkasan Sistem</h2>
+                        <p>Dashboard ini menampilkan kondisi terbaru dari proses produksi sampai penggajian.</p>
+                    </div>
+                    <button class="btn btn-soft" onclick="loadDashboard()">⚡ Refresh Data</button>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-box">
+                        <h3>📦 Stok Gudang</h3>
+                        <p>
+                            Stok bal dan ikat dihitung berdasarkan transaksi produksi, pengambilan,
+                            validasi hasil kemas, dan penjualan.
+                        </p>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>👷 Aktivitas Pekerja</h3>
+                        <p>
+                            Pekerja dapat mengambil barang, melaporkan hasil kemas, dan melihat status
+                            validasi pekerjaannya.
+                        </p>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>💰 Penggajian</h3>
+                        <p>
+                            Upah pekerja dihitung berdasarkan jumlah ikat dan akan muncul sebagai pending
+                            sebelum dikonfirmasi pemilik.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: PEKERJA -->
+            <div id="info-pekerja" class="info-panel">
+                <div class="panel-head">
+                    <div>
+                        <h2>Informasi & Pendaftaran Pekerja</h2>
+                        <p>Kelola dan daftarkan akun pekerja baru Sopwana.</p>
+                    </div>
+                    <button class="btn btn-soft" onclick="loadPekerja()">⚡ Refresh Data</button>
+                </div>
+
+                <form id="formRegister" class="form-grid">
+                    <h3>➕ Pendaftaran Pekerja Baru</h3>
+                    <input id="regUsername" placeholder="Username pekerja" required minlength="3" maxlength="50"
+                        pattern="^[A-Za-z0-9._-]{3,50}$"
+                        title="Username harus 3-50 karakter dan hanya boleh huruf, angka, titik, underscore, atau strip" />
+
+                    <input id="regPassword" type="password" placeholder="Password" required minlength="4"
+                        maxlength="100" title="Password harus 4 sampai 100 karakter" />
+
+                    <input id="regNama" placeholder="Nama pekerja" required minlength="3" maxlength="100"
+                        pattern="^[A-Za-zÀ-ÿ\s'.-]{3,100}$"
+                        title="Nama harus 3-100 karakter dan hanya boleh huruf, spasi, titik, petik, atau strip" />
+
+                    <input id="regEmail" type="email" placeholder="Email aktif, contoh: nama@gmail.com" required
+                        maxlength="100" pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
+                        title="Email wajib memakai @ dan domain, contoh: nama@gmail.com" />
+
+                    <input id="regNoHp" placeholder="No HP, contoh: 08xxxxxxxxxx" required minlength="10" maxlength="15"
+                        pattern="^08[0-9]{8,13}$" title="No HP harus diawali 08 dan berisi 10 sampai 15 digit angka" />
+
+                    <input id="regAlamat" placeholder="Alamat lengkap" maxlength="255" title="Alamat maksimal 255 karakter" />
+
+                    <button class="btn btn-primary span-2" type="submit">
+                        ➕ Tambah / Register Pekerja
+                    </button>
+                </form>
+
+                <div class="divider"></div>
+
+                <div class="table-toolbar">
+                    <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--palette-dark);">Daftar Pekerja Terdaftar</h3>
+                    <input type="text" id="searchPekerja" class="search-input" placeholder="🔍 Cari nama / email / HP..." onkeyup="filterPekerjaTable()" />
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nama</th>
+                                <th>Email</th>
+                                <th>No HP</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblPekerja">
+                            <tr>
+                                <td colspan="5" style="text-align: center; color: var(--muted);">Klik refresh untuk memuat data pekerja.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TAB 3: PRODUKSI -->
+            <div id="info-produksi" class="info-panel">
+                <div class="panel-head">
+                    <div>
+                        <h2>Informasi & Input Produksi</h2>
+                        <p>Catat hasil produksi bal baru dan pantau riwayat hasil kerja pekerja.</p>
+                    </div>
+                    <button class="btn btn-soft" onclick="refreshProduksiPanel()">⚡ Refresh All</button>
+                </div>
+
+                <form id="formProduksi" class="form-grid single">
+                    <h3>📦 Tambah Produksi Bal Baru</h3>
+                    <input id="jumlahBalProduksi" type="number" min="1" placeholder="Jumlah bal produksi" required />
+                    <input id="catatanProduksi" placeholder="Catatan produksi (opsional)" />
+                    <button class="btn btn-primary" type="submit">➕ Tambah Produksi Bal</button>
+                </form>
+
+                <div class="divider"></div>
+
+                <div class="panel-head">
+                    <div>
+                        <h2>Riwayat Produksi Bal</h2>
+                        <p>Data produksi aktif yang mempengaruhi kartu stok.</p>
+                    </div>
+                    <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                        <input type="text" id="searchProduksi" class="search-input" placeholder="🔍 Cari ID / tanggal / catatan..." onkeyup="filterProduksiTable()" />
+                        <button class="btn btn-soft" onclick="loadProduksi()">Refresh Produksi</button>
+                    </div>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tanggal</th>
+                                <th>Jumlah Bal</th>
+                                <th>Catatan</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblProduksi">
+                            <tr>
+                                <td colspan="5" style="text-align: center; color: var(--muted);">Klik refresh untuk memuat riwayat produksi bal.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="panel-head">
+                    <div>
+                        <h2>Arsip Produksi Bal</h2>
+                        <p>Produksi yang sudah diarsipkan tetap tersimpan di database.</p>
+                    </div>
+                    <button class="btn btn-soft" onclick="loadProduksiArsip()">Refresh Arsip</button>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tanggal</th>
+                                <th>Jumlah Bal</th>
+                                <th>Catatan</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblProduksiArsip">
+                            <tr>
+                                <td colspan="6" style="text-align: center; color: var(--muted);">Klik refresh untuk memuat arsip produksi.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="panel-head">
+                    <div>
+                        <h2>Riwayat Hasil Kerja Pekerja</h2>
+                        <p>Data hasil kemas pekerja untuk monitoring dan validasi.</p>
+                    </div>
+                    <button class="btn btn-soft" onclick="loadRiwayatKerja()">Refresh Riwayat</button>
+                </div>
+
+                <div class="table-wrap tall">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID Hasil</th>
+                                <th>ID Pekerja</th>
+                                <th>Pekerja</th>
+                                <th>Tanggal</th>
+                                <th>Bal</th>
+                                <th>Ikat</th>
+                                <th>Validasi</th>
+                                <th>Bayar</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblRiwayat">
+                            <tr>
+                                <td colspan="8" style="text-align: center; color: var(--muted);">Klik refresh untuk memuat riwayat kerja.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TAB 4: VALIDASI -->
+            <div id="info-validasi" class="info-panel">
+                <div class="panel-head">
+                    <div>
+                        <h2>Validasi Hasil Kemas Pekerja</h2>
+                        <p>Verifikasi hasil kemas sebelum ditambahkan ke stok ikat dan upah pekerja.</p>
+                    </div>
+                    <button class="btn btn-soft" onclick="loadValidasi()">⚡ Refresh Validasi</button>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nama Pekerja</th>
+                                <th>Jumlah Ikat</th>
+                                <th>Status Validasi</th>
+                                <th>Catatan</th>
+                                <th>Aksi Verifikasi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblValidasi">
+                            <tr>
+                                <td colspan="6" style="text-align: center; color: var(--muted);">Klik refresh untuk memuat data validasi.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TAB 5: PENJUALAN -->
+            <div id="info-penjualan" class="info-panel">
+                <div class="panel-head">
+                    <div>
+                        <h2>Informasi & Input Penjualan</h2>
+                        <p>Menampilkan riwayat penjualan ikat yang mengurangi stok gudang.</p>
+                    </div>
+                    <button class="btn btn-soft" onclick="loadPenjualan()">⚡ Refresh Penjualan</button>
+                </div>
+
+                <div class="sales-note">
+                    <b>🏷️ Harga Jual Standar: Rp2.000 / ikat</b>
+                    <span>Penjualan otomatis direkap per minggu berdasarkan tanggal input harian.</span>
+                </div>
+
+                <div class="sales-summary-grid" id="penjualanSummaryCards">
+                    <div class="metric-card"><span>Ikat Minggu Ini</span><b>0 ikat</b></div>
+                    <div class="metric-card"><span>Uang Minggu Ini</span><b>Rp0</b></div>
+                    <div class="metric-card"><span>Total Semua Ikat</span><b>0 ikat</b></div>
+                    <div class="metric-card"><span>Total Semua Uang</span><b>Rp0</b></div>
+                </div>
+
+                <form id="formPenjualan" class="form-grid single sales-form">
+                    <h3>🛒 Input Penjualan Ikat Harian</h3>
+                    <input id="jumlahIkatJual" type="number" min="1" placeholder="Jumlah ikat dijual hari ini" required />
+                    <input id="catatanJual" placeholder="Catatan penjualan (misal: penjualan toko A)" />
+                    <button class="btn btn-primary" type="submit">🛒 Simpan Penjualan Harian</button>
+                </form>
+
+                <div class="divider"></div>
+
+                <div id="penjualanMingguanList" class="weekly-stack">
+                    <div class="weekly-empty">Klik refresh untuk memuat rekap penjualan mingguan.</div>
+                </div>
+            </div>
+
+            <!-- TAB 6: PENGGAJIAN -->
+            <div id="info-gaji" class="info-panel">
+                <div class="panel-head">
+                    <div>
+                        <h2>Informasi Penggajian Mingguan</h2>
+                        <p>Rekap gaji per pekerja berdasarkan hasil kerja VALID minggu berjalan.</p>
+                    </div>
+                    <button class="btn btn-soft" onclick="loadPendingGaji()">⚡ Refresh Rekap</button>
+                </div>
+
+                <div class="actions-row">
+                    <button class="btn btn-warning" id="btnMunculkanGaji" type="button">
+                        💰 Hitung / Munculkan Gaji Mingguan
+                    </button>
+                </div>
+
+                <div class="divider"></div>
+
+                <div id="rekapGajiList" class="payroll-worker-list">
+                    <div class="empty-payroll">Klik refresh untuk memuat rekap gaji mingguan.</div>
+                </div>
+            </div>
+
+            <!-- TAB 7: LAPORAN -->
+            <div id="info-laporan" class="info-panel">
+                <div class="panel-head">
+                    <div>
+                        <h2>Laporan Export Excel</h2>
+                        <p>Unduh laporan produksi dan payroll mingguan dalam format Excel (.xlsx).</p>
+                    </div>
+                </div>
+
+                <div class="report-box">
+                    <div>
+                        <h3>📦 Laporan Produksi</h3>
+                        <p>Berisi data detail stok, produksi bal, hasil kemas, dan penjualan khusus minggu berjalan.</p>
+                        <button class="btn btn-primary" onclick="downloadProductionExcel()">
+                            📥 Download Production Minggu Ini
+                        </button>
+                    </div>
+
+                    <div>
+                        <h3>💰 Laporan Payroll</h3>
+                        <p>Berisi data pekerja, total ikat valid, status penggajian, dan total upah khusus minggu berjalan.</p>
+                        <button class="btn btn-primary" onclick="downloadPayrollExcel()">
+                            📥 Download Payroll Minggu Ini
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- MODAL EDIT PEKERJA -->
+        <div id="modalEditPekerja" class="modal-backdrop">
+            <div class="modal-card">
+                <div class="modal-header">
+                    <h3>✏️ Edit Data Pekerja</h3>
+                    <button class="modal-close" onclick="closeEditModal()">&times;</button>
+                </div>
+                <form id="formEditPekerjaSubmit" onsubmit="saveEditPekerja(event)">
+                    <div class="modal-body">
+                        <input type="hidden" id="editIdPekerja" />
+                        <div>
+                            <label>Nama Lengkap Pekerja</label>
+                            <input id="editNamaPekerja" required minlength="3" maxlength="100" />
+                        </div>
+                        <div>
+                            <label>Email Aktif</label>
+                            <input id="editEmailPekerja" type="email" required maxlength="100" />
+                        </div>
+                        <div>
+                            <label>No HP (08xxxxxxxxxx)</label>
+                            <input id="editNoHpPekerja" required minlength="10" maxlength="15" />
+                        </div>
+                        <div>
+                            <label>Alamat Tempat Tinggal</label>
+                            <input id="editAlamatPekerja" maxlength="255" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-soft" onclick="closeEditModal()">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="toast" class="toast hidden"></div>
+    </main>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/pemilik.js"></script>
+    <script src="../js/ui-info.js"></script>
+</body>
+
+</html>
